@@ -1,0 +1,2027 @@
+<!doctype html>
+<!-- BUILD: HDANIO-TWD-FRONT-BACK-2026 -->
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>H’DANIO 廣告成效</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="H’DANIO 廣告成效">
+<meta property="og:title" content="H’DANIO 廣告成效">
+<meta property="og:description" content="H’DANIO 廣告成效">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="H’DANIO 廣告成效">
+<meta name="twitter:description" content="H’DANIO 廣告成效">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex,notranslate,max-snippet:0,max-image-preview:none,max-video-preview:0">
+<meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+<meta name="bingbot" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="GPTBot" content="noindex,nofollow">
+<meta name="ClaudeBot" content="noindex,nofollow">
+<meta name="CCBot" content="noindex,nofollow">
+<meta name="anthropic-ai" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js"></script>
+<style>
+  :root { color-scheme: light;
+    --c-spend:#16a34a; --c-rev:#1f6feb; --c-roas:#d97706; --c-purch:#7c3aed; --c-cpp:#dc2626;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif; background:#f3f1ec; color:#1a1a1a; line-height:1.5; }
+  button,input,select,textarea { font:inherit; }
+  .app { display:flex; min-height:100vh; }
+  .sidebar { width:240px; flex-shrink:0; background:#faf5ee; border-right:1px solid #e5dfd2; padding:28px 0 20px; position:sticky; top:0; height:100vh; overflow-y:auto; }
+  .brand { padding:0 24px 22px; border-bottom:1px solid #ebe5d6; }
+  .brand h1 { font-size:15px; margin:0 0 4px; color:#2d2a26; font-weight:800; white-space:nowrap; }
+  .brand p { font-size:11.5px; color:#8a8170; margin:0; }
+  .sb-nav { padding:16px 14px; }
+  .sb-label { font-size:10px; color:#b0a48f; text-transform:uppercase; letter-spacing:.06em; padding:0 10px; margin:14px 0 8px; font-weight:600; }
+  .sb-label:first-child { margin-top:0; }
+  .sb-tab { display:block; padding:9px 14px; border-radius:7px; color:#4a4438; font-size:13.5px; font-weight:500; cursor:pointer; text-decoration:none; margin:2px 0; transition:all .15s; user-select:none; }
+  .sb-tab:hover { background:#f0e8d9; }
+  .sb-tab.active { background:#fff; color:#1a1a1a; box-shadow:0 1px 4px rgba(0,0,0,.05); font-weight:700; }
+  .sb-footer { margin-top:28px; padding:16px 24px; border-top:1px solid #ebe5d6; font-size:11px; color:#8a8170; }
+  .sb-footer .updated-time { color:#5a5246; font-weight:600; margin-top:2px; }
+  .sb-actions { margin-top:14px; display:grid; gap:6px; }
+  .sb-btn { appearance:none; border:1px solid #d4cfc0; background:#fff; color:#4a4438; border-radius:7px; padding:7px 10px; font-size:12px; font-weight:600; cursor:pointer; text-align:center; transition:all .15s; }
+  .sb-btn:hover:not(:disabled) { border-color:#d97706; color:#d97706; }
+  .sb-btn.primary { background:#d97706; border-color:#d97706; color:#fff; }
+  .sb-btn.primary:hover:not(:disabled) { background:#b8620a; border-color:#b8620a; color:#fff; }
+  .sb-btn:disabled { opacity:.45; cursor:not-allowed; }
+  .main { flex:1; padding:28px 36px 40px; overflow-x:auto; max-width:100%; min-width:0; }
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+  .page-head { margin-bottom:18px; }
+  .page-title { font-size:24px; font-weight:800; color:#1a1a1a; margin:0 0 6px; letter-spacing:-.01em; }
+  .page-subtitle { font-size:13px; color:#8a8170; margin:0; }
+
+  /* YTD */
+  .ytd-banner { background:#fff; border:1px solid #e7e2d6; border-radius:12px; padding:24px 30px; margin-bottom:18px; }
+  .ytd-title { font-size:11px; color:#8a8170; text-transform:uppercase; letter-spacing:.06em; margin-bottom:16px; font-weight:600; }
+  .ytd-primary { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; padding-bottom:14px; border-bottom:1px solid #ebe5d6; margin-bottom:12px; }
+  .ytd-primary .yp-label { font-size:10px; color:#8a8170; text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px; }
+  .ytd-primary .yp-value { font-size:28px; font-weight:800; color:#1a1a1a; font-variant-numeric:tabular-nums; line-height:1.15; }
+  .ytd-primary .yp-value.spend { color:var(--c-spend); }
+  .ytd-primary .yp-value.revenue { color:var(--c-rev); }
+  .ytd-primary .yp-value.roas { color:var(--c-roas); }
+  .ytd-secondary { display:flex; gap:22px; font-size:12.5px; color:#5a5246; flex-wrap:wrap; }
+  .ytd-secondary b { color:#1a1a1a; font-weight:700; font-variant-numeric:tabular-nums; }
+  .ytd-secondary .sep { color:#d4cfc0; }
+
+  .trend-card { background:#fff; border:1px solid #e7e2d6; border-radius:10px; padding:18px 24px; margin-bottom:22px; }
+  .trend-title { font-size:11px; color:#8a8170; text-transform:uppercase; letter-spacing:.06em; font-weight:600; margin-bottom:8px; }
+  .trend-canvas-wrap { height:220px; position:relative; }
+
+  .months-grid { display:grid; grid-template-columns:1fr; gap:12px; }
+  .month-card-link { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px 22px; text-decoration:none; color:inherit; cursor:pointer; transition:all .15s; display:block; box-shadow:0 2px 8px rgba(0,0,0,.04); }
+  .month-card-link:hover { transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.07); border-color:#1f6feb; }
+  .month-card-link.current { border:2px solid #d97706; background:#fff; }
+  .mc-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+  .mc-title { font-size:17px; font-weight:700; color:#111; }
+  .mc-arrow { font-size:18px; color:#9ca3af; transition:transform .15s,color .15s; }
+  .month-card-link:hover .mc-arrow { transform:translateX(3px); color:#1f6feb; }
+  .mc-stats { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+  .mc-stats > div { display:flex; flex-direction:column; gap:2px; min-width:0; padding:8px 10px; background:#fff; border-radius:5px; }
+  .mc-label { font-size:10px; color:#888; text-transform:uppercase; letter-spacing:.04em; }
+  .mc-val { font-size:16px; font-weight:700; color:#111; font-variant-numeric:tabular-nums; word-break:break-all; }
+  .mc-val.spend { color:var(--c-spend); }
+  .mc-val.rev   { color:var(--c-rev); }
+  .mc-val.roas  { color:var(--c-roas); }
+  .mc-val.purch { color:var(--c-purch); }
+  .mc-val.cpp   { color:var(--c-cpp); }
+
+  .back-bar { display:flex; align-items:center; gap:12px; margin-bottom:18px; flex-wrap:wrap; }
+  .back-to-ytd { appearance:none; border:1px solid #d4cfc0; background:#fff; color:#4a4438; border-radius:8px; padding:8px 14px; font-size:13px; font-weight:600; cursor:pointer; transition:all .15s; display:inline-flex; align-items:center; gap:6px; }
+  .back-to-ytd:hover { border-color:#d97706; color:#d97706; background:#fef9f0; }
+  .month-detail-label { font-size:14px; font-weight:700; color:#1a1a1a; padding:4px 12px; background:#fff; border-radius:6px; border:1px solid #e7e2d6; }
+  .month-detail-select { appearance:none; -webkit-appearance:none; font-size:14px; font-weight:700; color:#1a1a1a; padding:8px 30px 8px 14px; background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23b0a48f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat right 10px center; border-radius:8px; border:1px solid #d4cfc0; cursor:pointer; min-height:36px; transition:all .15s; }
+  .month-detail-select:hover { border-color:#d97706; color:#d97706; }
+  .month-detail-select:focus { outline:none; border-color:#d97706; box-shadow:0 0 0 3px rgba(217,119,6,.15); }
+
+  .group-segments { display:inline-flex; gap:4px; background:#ebe5d6; padding:4px; border-radius:9px; margin-bottom:16px; flex-wrap:wrap; }
+  .group-segment { padding:6px 14px; border-radius:6px; border:0; background:transparent; color:#6b6258; font-size:12.5px; font-weight:600; cursor:pointer; transition:all .15s; }
+  .group-segment:hover { background:#faf5ee; }
+  .group-segment.active { background:#fff; color:#1a1a1a; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+
+  .month-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px; flex-wrap:wrap; }
+  .month-picker { display:inline-flex; gap:4px; background:#ebe5d6; padding:5px; border-radius:9px; flex-wrap:wrap; max-width:100%; }
+  .month-tab { padding:7px 16px; border-radius:6px; border:0; background:transparent; color:#6b6258; font-size:13px; font-weight:600; cursor:pointer; text-decoration:none; transition:all .15s; display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+  .month-tab:hover { background:#faf5ee; }
+  .month-tab.active { background:#fff; color:#1a1a1a; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  .m-badge { background:#d97706; color:#fff; font-size:9px; padding:1px 5px; border-radius:3px; font-weight:700; }
+  .month-actions { display:inline-flex; gap:6px; }
+  .month-action-btn { appearance:none; border:1px solid #d4cfc0; background:#fff; color:#6b6258; border-radius:7px; padding:7px 12px; font-size:12px; font-weight:600; cursor:pointer; transition:all .15s; white-space:nowrap; }
+  .month-action-btn:hover { border-color:#d97706; color:#d97706; }
+  .month-empty-msg { font-size:12.5px; color:#8a8170; }
+
+  /* KPI cards (single month detail) */
+  .kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:22px; }
+  .kpi-row.five { grid-template-columns:repeat(5,1fr); }
+  .kpi { background:#fff; border:1px solid #e7e2d6; border-radius:10px; padding:16px 18px; min-width:0; }
+  .kpi-label { font-size:11px; color:#8a8170; text-transform:uppercase; letter-spacing:.05em; margin-bottom:4px; font-weight:600; }
+  .kpi-value { font-size:22px; font-weight:800; color:#1a1a1a; line-height:1.2; font-variant-numeric:tabular-nums; word-break:break-word; }
+  .kpi.spend .kpi-value { color:var(--c-spend); }
+  .kpi.revenue .kpi-value { color:var(--c-rev); }
+  .kpi.roas .kpi-value { color:var(--c-roas); }
+  .kpi.purch .kpi-value { color:var(--c-purch); }
+  .kpi.cpp .kpi-value { color:var(--c-cpp); }
+
+  .card { background:#fff; border:1px solid #e7e2d6; border-radius:10px; padding:22px 26px; margin-bottom:16px; }
+  .card h2 { font-size:14px; margin:0 0 14px; color:#1a1a1a; font-weight:700; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .card .hint { font-size:11px; color:#9c9489; font-weight:400; }
+
+  .compare-wrap { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  .compare-card { background:#fff; border:1px solid #e7e2d6; border-radius:10px; padding:16px 18px; min-width:0; }
+  .compare-stats { display:grid; grid-template-columns:repeat(var(--stat-cols,3),1fr); gap:8px; margin-bottom:12px; }
+  .stat-box { padding:10px 12px; border-radius:7px; min-width:0; }
+  .stat-box.groupbuy { background:#efe3d8; border:1px solid #d8c5b3; }
+  .stat-box.remarketing { background:#e3e8ee; border:1px solid #c2cdd9; }
+  .stat-box.web    { background:#e8ede5; border:1px solid #c8d3c5; }
+  .stat-box .slabel { font-size:12px; color:#5a5246; margin-bottom:10px; font-weight:700; display:flex; align-items:center; gap:6px; padding-bottom:8px; border-bottom:1px solid rgba(0,0,0,.06); }
+  .stat-box .multi-stats { display:flex; flex-direction:column; gap:6px; }
+  .stat-box .ms-item { display:flex; align-items:baseline; justify-content:space-between; gap:8px; min-width:0; }
+  .stat-box .ms-label { font-size:11px; color:#7a7167; font-weight:500; flex-shrink:0; }
+  .stat-box .ms-value { font-weight:700; font-size:14px; font-variant-numeric:tabular-nums; text-align:right; word-break:break-all; }
+  .stat-box.groupbuy .ms-value { color:#6b4a3a; }
+  .stat-box.remarketing .ms-value { color:#45556a; }
+  .stat-box.web    .ms-value { color:#4d6151; }
+  .stat-dot { width:10px; height:10px; border-radius:3px; flex-shrink:0; }
+  .stat-dot.groupbuy { background:#b89687; }
+  .stat-dot.remarketing { background:#8a9bb0; }
+  .stat-dot.web    { background:#9bab9b; }
+
+  .chart-container { position:relative; height:260px; }
+  .chart-container.tall { height:360px; }
+
+  .table-wrap { overflow-x:auto; margin:0 -2px; }
+  .roi-table { width:100%; border-collapse:collapse; font-size:12.5px; white-space:nowrap; }
+  .roi-table th, .roi-table td { padding:10px 12px; text-align:right; border-bottom:1px solid #f1ede2; color:#1a1a1a; vertical-align:middle; font-variant-numeric:tabular-nums; }
+  .roi-table th { background:#faf6ec; color:#6b6258; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.04em; position:sticky; top:0; z-index:1; }
+  .roi-table th:first-child, .roi-table td:first-child { text-align:left; padding-left:16px; white-space:normal; word-break:keep-all; overflow-wrap:break-word; line-height:1.55; font-variant-numeric:normal; }
+  .roi-table th:last-child, .roi-table td:last-child { padding-right:16px; }
+  .roi-table tr.group-row { cursor:pointer; }
+  .roi-table tr.group-row:hover td { background:#fdfaf2; }
+  .caret { display:inline-block; width:0; height:0; border-left:5px solid #b0a48f; border-top:4px solid transparent; border-bottom:4px solid transparent; margin-right:8px; transition:transform .15s; vertical-align:middle; }
+  .roi-table tr.group-row.open .caret { transform:rotate(90deg); }
+  .roi-table tr.child { background:#fbfaf5; font-size:11.5px; display:none; }
+  .roi-table tr.child.show { display:table-row; }
+  .roi-table tr.child td { color:#5a5246; padding:7px 12px; border-bottom:1px solid #f5f0e3; }
+  .roi-table tr.child td:first-child { padding-left:36px; font-weight:400; color:#6b6258; }
+  .roi-table tr.subtotal { font-weight:700; background:#e3e8ee; }
+  .roi-table tr.subtotal td { color:#45556a; border-top:1px solid #c2cdd9; border-bottom:1px solid #c2cdd9; font-size:12px; }
+  .roi-table tr.subtotal.groupbuy { background:#efe3d8; }
+  .roi-table tr.subtotal.groupbuy td { color:#6b4a3a; border-top:1px solid #d8c5b3; border-bottom:1px solid #d8c5b3; }
+  .roi-table tr.subtotal.remarketing { background:#e3e8ee; }
+  .roi-table tr.subtotal.remarketing td { color:#45556a; border-top:1px solid #c2cdd9; border-bottom:1px solid #c2cdd9; }
+  .roi-table tr.subtotal.web { background:#e8ede5; }
+  .roi-table tr.subtotal.web td { color:#4d6151; border-top:1px solid #c8d3c5; border-bottom:1px solid #c8d3c5; }
+  .roi-table tr.total { font-weight:800; background:#efe3d8; }
+  .roi-table tr.total td { color:#6b4a3a; border-top:2px solid #b89687; border-bottom:none; padding:11px 12px; font-size:12.5px; }
+  .roas-cell.good { color:var(--c-spend); font-weight:700; }
+  .roas-cell.warn { color:var(--c-roas); font-weight:700; }
+  .roas-cell.bad  { color:var(--c-cpp); font-weight:700; }
+  .creative-ranking-table { min-width:1320px; table-layout:auto !important; }
+  .creative-ranking-table th:first-child, .creative-ranking-table td:first-child { width:72px; max-width:72px; text-align:right; white-space:nowrap; }
+  .creative-ranking-table th:nth-child(2), .creative-ranking-table td:nth-child(2) { text-align:left; min-width:150px; max-width:230px; white-space:normal; word-break:break-word; overflow-wrap:anywhere; }
+  .creative-ranking-table .reason-cell, .creative-ranking-table .action-cell { text-align:left; min-width:180px; max-width:280px; white-space:normal; line-height:1.45; font-variant-numeric:normal; }
+  .creative-status { display:inline-flex; align-items:center; justify-content:center; padding:3px 8px; border-radius:999px; font-size:11px; font-weight:700; line-height:1.2; white-space:nowrap; }
+  .creative-status.mature { background:#dcfce7; color:#166534; }
+  .creative-status.potential { background:#fef3c7; color:#92400e; }
+  .creative-status.observe { background:#e0f2fe; color:#075985; }
+  .creative-status.pause { background:#fee2e2; color:#991b1b; }
+
+  .filter-bar { display:flex; gap:12px; margin-bottom:14px; flex-wrap:wrap; align-items:end; }
+  .filter-bar .field { display:grid; gap:4px; min-width:200px; flex:1 1 220px; }
+  .filter-bar label { font-size:11px; color:#8a8170; font-weight:600; text-transform:uppercase; }
+  .filter-bar input, .filter-bar select { border:1px solid #d4cfc0; background:#fff; border-radius:7px; padding:7px 10px; font-size:13px; min-height:36px; }
+
+  .setup-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .setup-grid > .card.full { grid-column:1 / -1; }
+  .dropzone { border:1.5px dashed #d4cfc0; border-radius:9px; background:#faf5ee; padding:22px; display:grid; gap:6px; cursor:pointer; text-align:center; transition:all .18s; }
+  .dropzone:hover, .dropzone.dragover { border-color:#d97706; background:#fef9f0; }
+  .dropzone strong { font-size:14px; color:#1a1a1a; }
+  .dropzone span { font-size:12px; color:#8a8170; }
+  .file-input { display:none; }
+  .two-cols { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .field { display:grid; gap:4px; }
+  .field label { font-size:11px; color:#5a5246; font-weight:600; }
+  .field input, .field select, .field textarea { border:1px solid #d4cfc0; background:#fff; border-radius:7px; padding:7px 10px; font-size:13px; min-height:36px; }
+  .field textarea { min-height:56px; resize:vertical; line-height:1.5; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline:none; border-color:#d97706; box-shadow:0 0 0 3px rgba(217,119,6,.15); }
+  .file-list { display:grid; gap:10px; margin-top:12px; }
+  .file-row { border:1px solid #ebe5d6; border-radius:8px; padding:12px; background:#fdfbf5; display:grid; gap:10px; }
+  .file-main { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  .file-name { font-weight:700; font-size:13.5px; color:#1a1a1a; word-break:break-all; }
+  .file-meta { font-size:11px; color:#8a8170; margin-top:2px; }
+  .remove-file { appearance:none; border:1px solid #d4cfc0; background:#fff; color:#6b6258; border-radius:6px; padding:4px 10px; font-size:11px; cursor:pointer; flex-shrink:0; }
+  .remove-file:hover { border-color:#dc2626; color:#dc2626; }
+  .mapping-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .small-note { font-size:11.5px; color:#8a8170; line-height:1.55; margin-top:4px; }
+
+  .alert { border:1px solid #efd6a7; background:#fff7e8; color:#5c410d; border-radius:7px; padding:10px 12px; font-size:12.5px; line-height:1.5; display:none; }
+  .alert.show { display:block; }
+  .empty { border:1.5px dashed #d4cfc0; border-radius:10px; background:#fdfbf5; padding:60px 24px; text-align:center; color:#8a8170; font-size:13px; }
+  .empty strong { display:block; color:#1a1a1a; font-size:16px; margin-bottom:6px; font-weight:700; }
+
+  .creative-thumb { width:56px; height:56px; border:1px solid #ebe5d6; border-radius:7px; background:#faf5ee; display:grid; place-items:center; overflow:hidden; flex-shrink:0; }
+  .creative-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .creative-thumb .ph { font-size:10px; color:#b0a48f; }
+  .creative-cell { display:flex; gap:10px; align-items:flex-start; min-width:0; max-width:180px; }
+  .creative-cell .meta { display:grid; gap:2px; min-width:0; flex:1; }
+  .creative-cell .meta strong { font-size:13px; color:#1a1a1a; font-weight:600; word-break:break-word; line-height:1.4; }
+  #creativeTableContainer .roi-table th:first-child, #creativeTableContainer .roi-table td:first-child { max-width:180px; width:180px; padding-left:12px; padding-right:8px; }
+  #creativeTableContainer .creative-ranking-table th:first-child, #creativeTableContainer .creative-ranking-table td:first-child { width:72px; max-width:72px; padding-left:12px; padding-right:12px; }
+  #creativeTableContainer .roi-table { table-layout:fixed; }
+  #creativeTableContainer .roi-table th, #creativeTableContainer .roi-table td { padding:10px 12px; }
+  #creativeTableContainer .roi-table th:last-child, #creativeTableContainer .roi-table td:last-child { padding-right:50px; }
+  #audienceTableContainer .roi-table th:first-child, #audienceTableContainer .roi-table td:first-child { max-width:200px; width:200px; padding-left:12px; padding-right:8px; }
+  #audienceTableContainer .roi-table { table-layout:fixed; }
+  #audienceTableContainer .roi-table th, #audienceTableContainer .roi-table td { padding:10px 12px; }
+  #audienceTableContainer .roi-table th:last-child, #audienceTableContainer .roi-table td:last-child { padding-right:50px; }
+  .mini-button { border:1px solid #d4cfc0; background:#fff; color:#5a5246; border-radius:5px; min-height:24px; padding:2px 8px; font-size:11px; cursor:pointer; white-space:nowrap; }
+  .mini-button:hover { border-color:#d97706; color:#d97706; }
+  .creative-images-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:10px; margin-top:14px; }
+  .ci-cell { border:1px solid #ebe5d6; border-radius:8px; background:#fdfbf5; padding:8px; display:flex; flex-direction:column; gap:6px; }
+  .ci-cell img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:5px; background:#f0e8d9; }
+  .ci-name { font-size:11px; color:#5a5246; word-break:break-all; line-height:1.3; min-height:28px; }
+  .ci-status { font-size:10px; color:#8a8170; }
+  .ci-status.matched { color:#16a34a; font-weight:700; }
+
+  .saved-months { display:grid; gap:8px; margin-top:14px; }
+  .saved-month-row { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 14px; border:1px solid #ebe5d6; border-radius:8px; background:#fdfbf5; }
+  .saved-month-row.active { border-color:#d97706; background:#fef9f0; }
+  .smr-info { display:flex; flex-direction:column; gap:2px; min-width:0; flex:1; }
+  .smr-label { font-size:13.5px; font-weight:700; color:#1a1a1a; }
+  .smr-meta { font-size:11px; color:#8a8170; }
+  .smr-actions { display:flex; gap:6px; flex-shrink:0; }
+  .month-save-row { display:flex; gap:8px; align-items:end; flex-wrap:wrap; padding:14px; background:#fef9f0; border:1px dashed #fde68a; border-radius:9px; margin-top:10px; }
+  .month-save-row .field { flex:1 1 200px; min-width:0; }
+  .save-btn { appearance:none; border:1px solid #d97706; background:#d97706; color:#fff; border-radius:7px; padding:9px 18px; font-size:13px; font-weight:700; cursor:pointer; min-height:36px; white-space:nowrap; }
+  .save-btn:hover:not(:disabled) { background:#b8620a; border-color:#b8620a; }
+  .save-btn:disabled { opacity:.5; cursor:not-allowed; }
+  .active-month-banner { display:flex; align-items:center; gap:10px; padding:10px 14px; background:linear-gradient(to right,#fef3c7,#fef9f0); border-left:4px solid #d97706; border-radius:6px; margin-bottom:14px; font-size:13px; color:#78350f; }
+  .active-month-banner b { font-weight:800; }
+
+  .mobile-header { display:none; }
+  .sidebar-overlay { display:none; }
+
+  body.client-view .sb-tab[data-section="setup"],
+  body.client-view .sb-tab[data-section="raw"],
+  body.client-view .sb-actions,
+  body.client-view #sec-setup,
+  body.client-view #sec-raw,
+  body.client-view .page-subtitle,
+  body.client-view .month-empty-msg,
+  body.client-view .month-actions,
+  body.client-view #activeMonthBanner { display:none !important; }
+  body.client-view .brand h1::after { content:" · 業主版"; color:#d97706; font-weight:600; font-size:12px; }
+
+  @media print {
+    body { background:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .sidebar, .mobile-header, .sidebar-overlay, .filter-bar, .sb-actions, .month-bar .month-actions, .back-bar, .alert, #activeMonthBanner, .month-empty-msg, .group-segments { display:none !important; }
+    .app { display:block !important; }
+    .main { padding:0 !important; max-width:100% !important; }
+    .tab-content { display:none !important; }
+    .tab-content.active { display:block !important; }
+    .roi-table tr.child { display:table-row !important; }
+    .card, .compare-card, .ytd-banner, .trend-card, .month-card-link { box-shadow:none !important; break-inside:avoid; page-break-inside:avoid; }
+    .chart-container { height:240px !important; }
+    .chart-container.tall { height:320px !important; }
+    canvas { max-width:100% !important; height:auto !important; }
+    .roi-table { font-size:10.5px !important; }
+    .roi-table th, .roi-table td { padding:5px 8px !important; }
+    @page { size:A4; margin:10mm; }
+  }
+
+  @media (max-width:1100px) {
+    .compare-wrap { grid-template-columns:1fr; }
+    .setup-grid { grid-template-columns:1fr; }
+  }
+  @media (max-width:768px) {
+    .mobile-header { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#faf5ee; border-bottom:1px solid #e5dfd2; position:sticky; top:0; z-index:100; }
+    .mobile-header .mh-title { font-size:15px; font-weight:800; color:#2d2a26; }
+    .hamburger { width:36px; height:36px; border:none; background:transparent; cursor:pointer; padding:0; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:4px; }
+    .hamburger span { display:block; width:22px; height:2px; background:#2d2a26; border-radius:1px; }
+    .app { flex-direction:column; }
+    .sidebar { position:fixed; top:0; right:0; left:auto; height:100vh; width:260px; max-width:80vw; transform:translateX(100%); transition:transform .25s ease; z-index:200; overflow-y:auto; box-shadow:-2px 0 12px rgba(0,0,0,.15); border-right:none; border-left:1px solid #e5dfd2; }
+    .sidebar.open { transform:translateX(0); }
+    .sidebar-overlay { display:block; position:fixed; inset:0; background:rgba(0,0,0,.4); opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:150; }
+    .sidebar-overlay.show { opacity:1; pointer-events:auto; }
+    .main { padding:16px 14px 24px; }
+    .page-title { font-size:19px; }
+    .page-subtitle { font-size:12px; }
+    .kpi-row, .kpi-row.five { grid-template-columns:1fr 1fr !important; gap:8px; }
+    .kpi { padding:12px 14px; }
+    .kpi-value { font-size:18px; }
+    .compare-wrap, .mapping-grid, .two-cols { grid-template-columns:1fr !important; }
+    .compare-stats { grid-template-columns:1fr !important; }
+    .card { padding:14px 12px; }
+    .ytd-banner { padding:18px; }
+    .ytd-primary { grid-template-columns:1fr !important; gap:14px; }
+    .ytd-primary .yp-value { font-size:24px; }
+    .ytd-secondary { flex-direction:column; gap:8px; }
+    .ytd-secondary .sep { display:none; }
+    .trend-card { padding:14px 16px; }
+    .trend-canvas-wrap { height:200px; }
+    .month-card-link { padding:14px 16px; }
+    .mc-title { font-size:15px; }
+    .mc-stats { grid-template-columns:1fr 1fr 1fr !important; gap:8px; }
+    .mc-val { font-size:14px; }
+    /* === Mobile table: sticky first column + horizontal scroll === */
+    .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:0; position:relative; }
+    .roi-table { font-size:11px; table-layout:auto; white-space:nowrap; min-width:600px; }
+    .roi-table th, .roi-table td { padding:8px 10px; line-height:1.45; white-space:nowrap; }
+    .roi-table tr.subtotal td, .roi-table tr.total td { padding:8px 10px; font-size:11px; }
+    /* CPA visible on mobile (scroll to see) */
+    .roi-table th:last-child, .roi-table td:last-child { display:table-cell; padding-right:14px; }
+    /* Sticky first column (受眾包/素材) */
+    .roi-table th:first-child, .roi-table td:first-child {
+      position:sticky; left:0; z-index:2;
+      min-width:130px; max-width:160px; width:140px;
+      padding-left:10px; padding-right:8px;
+      font-size:11px; white-space:normal; word-break:keep-all; overflow-wrap:break-word; line-height:1.4;
+      background:#fff;
+      box-shadow:2px 0 4px -2px rgba(0,0,0,0.08);
+    }
+    /* Row-specific backgrounds so sticky cell matches row color */
+    .roi-table thead th:first-child { background:#faf6ec; z-index:3; }
+    .roi-table tr.group-row td:first-child { background:#fff; }
+    .roi-table tr.group-row:hover td:first-child { background:#fdfaf2; }
+    .roi-table tr.child td:first-child { background:#fbfaf5; padding-left:18px; }
+    .roi-table tr.subtotal td:first-child { background:#e3e8ee; }
+    .roi-table tr.subtotal.groupbuy td:first-child { background:#efe3d8; }
+    .roi-table tr.subtotal.remarketing td:first-child { background:#e3e8ee; }
+    .roi-table tr.subtotal.web td:first-child { background:#e8ede5; }
+    .roi-table tr.total td:first-child { background:#efe3d8; }
+    /* Override desktop fixed widths on audience/creative tables */
+    #audienceTableContainer .roi-table, #creativeTableContainer .roi-table { table-layout:auto; min-width:600px; }
+    #audienceTableContainer .roi-table th:first-child, #audienceTableContainer .roi-table td:first-child,
+    #creativeTableContainer .roi-table th:first-child, #creativeTableContainer .roi-table td:first-child {
+      max-width:160px; width:140px; min-width:130px;
+    }
+    #audienceTableContainer .roi-table th:last-child, #audienceTableContainer .roi-table td:last-child,
+    #creativeTableContainer .roi-table th:last-child, #creativeTableContainer .roi-table td:last-child { padding-right:14px; }
+    /* Hide rename button on mobile to save space */
+    .rename-audience-btn { display:none !important; }
+    /* Compact creative cell on mobile */
+    .creative-thumb { width:34px; height:34px; }
+    .creative-cell { gap:6px; max-width:none; }
+    .creative-cell .meta strong { font-size:11px; line-height:1.3; }
+    .creative-cell .meta .mini-button { font-size:9.5px !important; padding:1px 5px !important; }
+    /* Back-bar: stack on mobile for cleaner look */
+    .back-bar { flex-wrap:wrap; gap:8px; }
+    .month-detail-select { font-size:13px; padding:7px 28px 7px 12px; min-height:34px; }
+  }
+  @media (max-width:480px) {
+    .mc-stats { grid-template-columns:1fr 1fr !important; }
+    .page-title { font-size:17px; }
+    .ytd-primary .yp-value { font-size:22px; }
+  }
+</style>
+</head>
+<body>
+<div class="mobile-header">
+  <div class="mh-title">H’DANIO 廣告報表</div>
+  <button class="hamburger" id="hamburgerBtn" aria-label="選單"><span></span><span></span><span></span></button>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <h1>H’DANIO 廣告報表</h1>
+      <p>台幣廣告成效報表</p>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-label">資料</div>
+      <a class="sb-tab" data-section="setup">資料設定</a>
+      <div class="sb-label">分析</div>
+      <a class="sb-tab active" data-section="overview">成效總覽</a>
+      <a class="sb-tab" data-section="audience">每月成效</a>
+      <a class="sb-tab" data-section="raw">原始資料檢核</a>
+    </nav>
+    <div class="sb-footer">
+      <div>幣別：TWD（台幣）</div>
+      <div class="updated-time" id="rowCount">尚未匯入</div>
+      <div class="sb-actions">
+        <button class="sb-btn" id="sampleButton" type="button">載入範例</button>
+        <button class="sb-btn" id="copySummaryButton" type="button" disabled>複製摘要</button>
+        <button class="sb-btn" id="exportButton" type="button" disabled>下載 CSV</button>
+        <button class="sb-btn" id="pdfButton" type="button" disabled>匯出 PDF</button>
+        <button class="sb-btn primary" id="downloadJsonButton" type="button" data-download-json disabled>下載業主資料 JSON（自動更新）</button>
+        <button class="sb-btn" id="clientLinkButton" type="button" disabled>複製業主版連結</button>
+        <button class="sb-btn" id="downloadHtmlButton" type="button" data-download-html disabled>下載業主版 HTML</button>
+        <button class="sb-btn" id="resetButton" type="button">清除全部</button>
+      </div>
+    </div>
+  </aside>
+  <main class="main">
+    <section id="sec-setup" class="tab-content">
+      <div class="page-head"><h1 class="page-title">資料設定</h1><p class="page-subtitle">設定業主、匯入 Meta CSV、設定欄位與分組、儲存為月份報表</p></div>
+      <div id="activeMonthBanner"></div>
+      <div class="setup-grid">
+        <div class="card full">
+          <h2>0. 業主資訊 <span class="hint">業主名稱與 Logo 會套用到所有頁面、瀏覽器分頁圖示與業主版</span></h2>
+          <div class="two-cols">
+            <div class="field"><label for="brandName">業主名稱</label><input id="brandName" type="text" value="H’DANIO" placeholder="例如：H’DANIO" maxlength="40"></div>
+            <div class="field"><label for="brandSubtitle">副標題（可選）</label><input id="brandSubtitle" type="text" value="台幣廣告成效報表" placeholder="例如：4 月廣告月報" maxlength="60"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:14px;padding:12px;background:#fdfbf5;border:1px solid #ebe5d6;border-radius:8px;">
+            <div id="logoPreview" style="width:64px;height:64px;border-radius:10px;background:#fff;border:1px solid #ebe5d6;display:grid;place-items:center;overflow:hidden;flex-shrink:0;">
+              <span style="font-size:11px;color:#b0a48f;">無 Logo</span>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:4px;">業主 Logo（取代瀏覽器分頁圖示）</div>
+              <div style="font-size:11.5px;color:#8a8170;margin-bottom:8px;">建議用方形圖檔（PNG/JPG/SVG），會自動裁成 64×64 顯示</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                <input id="logoInput" type="file" accept="image/*" style="display:none;">
+                <button class="mini-button" type="button" data-upload-logo>上傳 Logo</button>
+                <button class="mini-button" type="button" data-remove-logo>移除</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card full">
+          <h2>1. 匯入 CSV <span class="hint">支援多檔，全部以台幣計算</span></h2>
+          <label class="dropzone" id="dropzone" for="fileInput"><strong>選擇或拖放 CSV 檔</strong><span>建議從 Meta 廣告管理員匯出「廣告組合」與「廣告」兩種層級的報表</span></label>
+          <input class="file-input" id="fileInput" type="file" accept=".csv,text/csv" multiple>
+          <div class="two-cols" style="margin-top:14px;">
+            <div class="field"><label for="exchangeRate">台幣帳號換算係數（固定 1）</label><input id="exchangeRate" type="number" min="1" step="1" value="1" readonly></div>
+            <div class="field"><label for="minimumSpend">洞察最低花費門檻（TWD）</label><input id="minimumSpend" type="number" min="0" step="100" value="500"></div>
+          </div>
+          <div class="small-note" style="margin-top:8px;color:#8a8170;">H’DANIO 帳號僅使用 TWD，報表不進行外幣換算。</div><div class="alert" id="mappingAlert" style="margin-top:12px;"></div>
+          <div class="file-list" id="fileList"></div>
+        </div>
+        <div class="card"><h2>2. 欄位對應 <span class="hint">通常自動偵測</span></h2><div class="mapping-grid" id="mappingGrid"></div></div>
+        <div class="card"><h2>3. 活動分組 <span class="hint">關鍵字命中即歸入該組</span></h2><div id="rulePanel"></div></div>
+        <div class="card full">
+          <h2>3b. 受眾名稱重新命名 <span class="hint">在「每月成效」表格按受眾右側 ✏️ 即可重新命名；此處可檢視／移除</span></h2>
+          <div id="renameList"></div>
+        </div>
+        <div class="card full">
+          <h2>4. 素材圖批次上傳 <span class="hint">檔名（去副檔名、忽略空白／底線／橫線）會自動 match 到對應的廣告名稱</span></h2>
+          <label class="dropzone" id="imageDropzone" for="imageInput"><strong>選擇或拖放圖檔（可多檔）</strong><span>例如檔名「新品影片A.png」會帶入名為「新品影片A」「新品_影片_A」的素材</span></label>
+          <input id="imageInput" type="file" accept="image/*" multiple style="display:none;">
+          <div id="creativeImagesPreview" class="creative-images-grid"></div>
+        </div>
+        <div class="card full">
+          <h2>6. 自動同步到 GitHub <span class="hint">設定一次 Token，之後儲存月份時自動 push JSON，業主端自動看到最新</span></h2>
+          <div class="two-cols">
+            <div class="field">
+              <label for="ghToken">GitHub Personal Access Token (PAT)</label>
+              <input id="ghToken" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="new-password">
+            </div>
+            <div class="field">
+              <label for="ghClientKey">客戶代號（決定 JSON 檔名）</label>
+              <input id="ghClientKey" type="text" placeholder="hdanio（業主網址會是 ?d=hdanio）">
+            </div>
+          </div>
+          <div class="two-cols" style="margin-top:8px;">
+            <div class="field">
+              <label for="ghOwner">Repo 擁有者（自動偵測）</label>
+              <input id="ghOwner" type="text" placeholder="hkjlhkjl6929">
+            </div>
+            <div class="field">
+              <label for="ghRepo">Repo 名稱（自動偵測）</label>
+              <input id="ghRepo" type="text" placeholder="hdanio">
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px;">
+            <label style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#1a1a1a;cursor:pointer;">
+              <input id="ghAutoSync" type="checkbox" style="width:16px;height:16px;"> 啟用自動同步（儲存月份時自動 push）
+            </label>
+            <button class="mini-button" type="button" data-gh-test>測試連線</button>
+            <button class="mini-button" type="button" data-gh-sync style="border-color:#16a34a;color:#16a34a;font-weight:700;">立即同步</button>
+            <span id="ghStatus" style="font-size:12px;color:#8a8170;margin-left:8px;"></span>
+          </div>
+          <div class="small-note" style="margin-top:10px;">
+            🔐 <b>如何取得 Token：</b>
+            <ol style="margin:6px 0 0;padding-left:18px;line-height:1.7;">
+              <li>到 <span style="background:#fdf9f5;padding:1px 6px;border-radius:3px;">https://github.com/settings/tokens?type=beta</span>（Fine-grained Token，更安全）</li>
+              <li>按 <b>Generate new token</b> → 名稱填「ads-sync」、過期 90 天</li>
+              <li>Repository access 選 <b>Only select repositories</b> → 勾 <b>hdanio</b>（repo 名稱全小寫）</li>
+              <li>Repository permissions：<b>Contents: Read and write</b>（不是 Read-only）</li>
+              <li>Generate → 複製 <b>github_pat_</b> 或 <b>ghp_</b> 開頭那串貼到上方</li>
+              <li>⚠️ Token 等於密碼，<b>不要外流</b>！只存在你瀏覽器的 localStorage</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card full">
+          <h2>5. 月份儲存 <span class="hint">把這次匯入的資料存成一個月份，方便日後在「成效總覽」切換比較</span></h2>
+          <div class="month-save-row">
+            <div class="field"><label for="monthLabelInput">月份標籤（顯示用）</label><input id="monthLabelInput" type="text" placeholder="例如 2026 年 4 月"></div>
+            <div class="field" style="flex:0 0 160px;"><label for="monthKeyInput">月份代碼（YYYY-MM）</label><input id="monthKeyInput" type="month"></div>
+            <button class="save-btn" id="saveMonthBtn" type="button" disabled>儲存為月份</button>
+          </div>
+          <div class="small-note" style="margin-top:8px;">儲存後可在「成效總覽 / 受眾包成效 / 素材表現 / 原始資料檢核」上方用月份切換頁籤。</div>
+          <div id="savedMonthsList" class="saved-months"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-overview" class="tab-content active">
+      <div class="page-head"><h1 class="page-title">成效總覽</h1><p class="page-subtitle">年度累計、月度趨勢、各月詳細成效</p></div>
+      <div id="overviewEmpty" class="empty"><strong>尚未儲存任何月份</strong>請先到「資料設定」匯入 CSV 並儲存為月份。</div>
+      <div id="ytdView" hidden>
+        <div class="ytd-banner">
+          <div class="ytd-title" id="ytdBannerTitle">年度累計</div>
+          <div class="ytd-primary">
+            <div><div class="yp-label">總花費</div><div class="yp-value spend" id="ytdSpend">$0</div></div>
+            <div><div class="yp-label">總轉換值</div><div class="yp-value revenue" id="ytdValue">$0</div></div>
+            <div><div class="yp-label">整體 ROAS</div><div class="yp-value roas" id="ytdRoas">0.00x</div></div>
+          </div>
+          <div class="ytd-secondary">
+            <span>購買 <b id="ytdPurch">0</b> 筆</span><span class="sep">|</span>
+            <span>每次購買成本 <b id="ytdCpp">—</b></span>
+          </div>
+        </div>
+        <div class="trend-card"><div class="trend-title">月度趨勢（花費 / 轉換值 / ROAS）</div><div class="trend-canvas-wrap"><canvas id="ytdTrendChart"></canvas></div></div>
+        <div class="months-grid" id="ytdMonthCards"></div>
+      </div>
+      <div id="monthDetailView" hidden>
+        <div class="back-bar"><button class="back-to-ytd" type="button" data-back-to-ytd>← 返回年度總覽</button><select class="month-detail-select" id="monthDetailSelect" data-overview-month-select aria-label="切換月份"></select></div>
+        <div class="group-segments" id="groupSegments"></div>
+        <div class="kpi-row five" id="metricGrid"></div>
+        <div class="card"><h2>分組成效比較 <span class="hint">開團活動 / 再行銷 / 官網活動</span></h2>
+          <div class="compare-wrap">
+            <div class="compare-card"><div style="font-size:12px;color:#6b6258;font-weight:700;margin-bottom:8px;">花費 vs 購買轉換值</div><div class="compare-stats" id="valueSummary"></div><div class="chart-container"><canvas id="valueChart"></canvas></div></div>
+            <div class="compare-card"><div style="font-size:12px;color:#6b6258;font-weight:700;margin-bottom:8px;">購買次數 vs CPA</div><div class="compare-stats" id="purchaseSummary"></div><div class="chart-container"><canvas id="purchaseChart"></canvas></div></div>
+          </div>
+        </div>
+        <div class="card"><h2>受眾累積排行 Top 10 <span class="hint">依轉換值由高到低</span></h2><div class="chart-container tall"><canvas id="audienceChart"></canvas></div></div>
+        <div class="card"><h2>受眾包成效 <span class="hint">同分組可摺疊；點分組標題展開／收起</span></h2><div id="overviewAudienceTable"></div></div>
+      </div>
+    </section>
+
+    <section id="sec-audience" class="tab-content">
+      <div class="page-head"><h1 class="page-title">每月成效</h1><p class="page-subtitle">點月份卡片進入該月詳細</p></div>
+      <div id="audienceEmpty" class="empty"><strong>尚未儲存任何月份</strong>請先到「資料設定」匯入並儲存月份。</div>
+      <!-- 月份卡片清單模式 -->
+      <div id="audienceCardsView" hidden>
+        <div class="months-grid" id="audienceMonthCards"></div>
+      </div>
+      <!-- 單月詳細模式 -->
+      <div id="audienceBody" hidden>
+        <div class="back-bar"><button class="back-to-ytd" type="button" data-back-to-audience-cards>← 返回月份清單</button><select class="month-detail-select" id="audienceMonthSelect" data-audience-month-select aria-label="切換月份"></select></div>
+        <div class="kpi-row five" id="audMetricGrid"></div>
+        <div class="card"><h2>分組成效比較</h2>
+          <div class="compare-wrap">
+            <div class="compare-card"><div style="font-size:12px;color:#6b6258;font-weight:700;margin-bottom:8px;">花費 vs 購買轉換值</div><div class="compare-stats" id="audValueSummary"></div><div class="chart-container"><canvas id="audValueChart"></canvas></div></div>
+            <div class="compare-card"><div style="font-size:12px;color:#6b6258;font-weight:700;margin-bottom:8px;">購買次數 vs CPA</div><div class="compare-stats" id="audPurchaseSummary"></div><div class="chart-container"><canvas id="audPurchaseChart"></canvas></div></div>
+          </div>
+        </div>
+        <div class="card"><h2>受眾累積排行 Top 10 <span class="hint">依轉換值由高到低</span></h2><div class="chart-container tall"><canvas id="audAudienceChart"></canvas></div></div>
+        <div class="card"><h2>受眾包成效 <span class="hint">同分組可摺疊</span></h2><div class="filter-bar" id="audienceFilterBar"></div><div id="audienceTableContainer"></div></div>
+        <div class="card"><h2>素材成效排名 <span class="hint">依 creative_id 彙整，成熟素材優先</span></h2><div class="filter-bar" id="creativeFilterBar"></div><div id="creativeTableContainer"></div></div>
+      </div>
+    </section>
+
+    <section id="sec-raw" class="tab-content">
+      <div class="page-head"><h1 class="page-title">原始資料檢核</h1><p class="page-subtitle">逐列檢查匯入資料分組</p></div>
+      <div class="month-bar" id="monthBarRaw"></div>
+      <div id="rawEmpty" class="empty"><strong>尚未匯入資料</strong></div>
+      <div id="rawBody" hidden><div class="card"><div class="filter-bar" id="rawFilterBar"></div><div id="rawTableContainer"></div></div></div>
+    </section>
+  </main>
+</div>
+<script>
+console.log("✅ Meta Ads Analyzer BUILD: HDANIO-CREATIVE-RANKING-2026");
+const state = {
+  files: [], headers: [],
+  mapping: { campaign:"", adSet:"", ad:"", audience:"", creative:"", creativeId:"", spend:"", impressions:"", linkClicks:"", purchaseValue:"", purchases:"", targetCpa:"", targetRoas:"" },
+  rules: [
+    { id:"groupbuy", name:"開團活動", keywords:"開團, 團購, 合作貼文, KOL, kol, influencer" },
+    { id:"remarketing", name:"再行銷", keywords:"再行銷, remarketing, retargeting, RT, rt" }
+  ],
+  fallbackGroupName: "官網活動",
+  selectedGroup: "all", section: "overview",
+  tableSearch: "", tableGroupFilter: "all",
+  clientPayload: null, lastReport: null, charts: {}, creativeImages: {},
+  storageKey: (function(){
+    // Auto-isolate localStorage per repo (different paths = different data)
+    var p = window.location.pathname.replace(/^\/+|\/+$/g, "").replace(/[^a-zA-Z0-9一-龥_-]/g, "_") || "root";
+    return "hdanioMetaAdsV1__" + p;
+  })(),
+  brandName: "H’DANIO", brandSubtitle: "台幣廣告成效報表", logo: "",
+  github: { token:"", owner:"hkjlhkjl6929", repo:"hdanio", clientKey:"hdanio", autoSync:false, lastSync:"", lastError:"" },
+  savedMonths: {}, activeMonth: null, draftLabel: "", draftKey: "",
+  overviewMode: "ytd", audienceMode: "cards", creativeMode: "cards", monthReportCache: {},
+  audienceRenames: {}
+};
+const PAGE_TITLES = { "sec-setup":"資料設定","sec-overview":"成效總覽","sec-audience":"每月成效","sec-raw":"原始資料檢核" };
+const fields = [
+  { key:"campaign", label:"廣告活動欄位" },{ key:"adSet", label:"廣告組合欄位" },{ key:"ad", label:"廣告欄位" },
+  { key:"audience", label:"受眾分析欄位" },{ key:"creative", label:"素材名稱欄位" },{ key:"creativeId", label:"creative_id 欄位" },
+  { key:"spend", label:"spend 欄位" },{ key:"impressions", label:"impressions 欄位" },{ key:"linkClicks", label:"link_clicks 欄位" },
+  { key:"purchaseValue", label:"purchase_value 欄位" },{ key:"purchases", label:"purchases 欄位" },
+  { key:"targetCpa", label:"target_cpa 欄位" },{ key:"targetRoas", label:"target_roas 欄位" }
+];
+const sampleCsv = `creative_id,spend,impressions,link_clicks,purchases,purchase_value,target_cpa,target_roas
+CR-001,18500,126000,3528,41,96200,650,3
+CR-002,9300,88000,1672,12,31800,650,3
+CR-003,14200,97000,2619,4,53000,650,3
+CR-004,7300,66000,1452,0,0,650,3
+CR-005,300,19000,532,0,0,650,3`;
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
+const formatCurrency = new Intl.NumberFormat("zh-TW", { style:"currency", currency:"TWD", maximumFractionDigits:0 });
+const formatNumber = new Intl.NumberFormat("zh-TW", { maximumFractionDigits:0 });
+const formatPercent = new Intl.NumberFormat("zh-TW", { style:"percent", minimumFractionDigits:2, maximumFractionDigits:2 });
+
+// ===== CSV =====
+function normalizeHeader(v){ return String(v||"").trim().toLowerCase().replace(/﻿/g,"").replace(/[()\[\]{}]/g,"").replace(/\s+/g,"").replace(/[_\-:：/\\]/g,""); }
+function parseNumber(v){ if(v==null) return 0; let t=String(v).trim(); if(!t||t==="-"||t.toLowerCase()==="nan") return 0; const n=/^\(.*\)$/.test(t); t=t.replace(/[,$NTDTWD台幣元\s]/gi,"").replace(/[%％]/g,"").replace(/[()]/g,""); const x=Number(t); return Number.isFinite(x)?(n?-x:x):0; }
+function parseCsv(text){ const rows=[]; let row=[]; let val=""; let q=false; const c=String(text||"").replace(/^﻿/,""); const d=detectDelimiter(c);
+  for(let i=0;i<c.length;i++){ const ch=c[i]; const nx=c[i+1];
+    if(ch==='"'){ if(q&&nx==='"'){ val+='"'; i++; } else q=!q; }
+    else if(ch===d&&!q){ row.push(val); val=""; }
+    else if((ch==="\n"||ch==="\r")&&!q){ if(ch==="\r"&&nx==="\n") i++; row.push(val); if(row.some(x=>String(x).trim()!=="")) rows.push(row); row=[]; val=""; }
+    else val+=ch;
+  } row.push(val); if(row.some(x=>String(x).trim()!=="")) rows.push(row);
+  if(!rows.length) return { headers:[], rows:[] };
+  const hi=findHeaderRow(rows); const headers=rows[hi].map((cell,i)=>{ const l=String(cell||"").trim()||`未命名欄位 ${i+1}`; return dedupeHeader(l, rows[hi], i); });
+  const body=rows.slice(hi+1).map(cells=>{ const r={}; headers.forEach((h,i)=>{ r[h]=cells[i]??""; }); return r; });
+  return { headers, rows:body };
+}
+function detectDelimiter(t){ const f=t.split(/\r?\n/).slice(0,8).join("\n"); const cs=[",", "\t", ";"]; const co=cs.map(c=>({ d:c, n:countDelim(f,c) })); co.sort((a,b)=>b.n-a.n); return co[0].n>0?co[0].d:","; }
+function countDelim(t,d){ let n=0; let q=false; for(let i=0;i<t.length;i++){ const c=t[i]; if(c==='"') q=!q; if(c===d&&!q) n++; } return n; }
+function findHeaderRow(rows){ let bi=0; let bs=-1; rows.slice(0,10).forEach((row,i)=>{ const j=row.map(normalizeHeader).join(" "); let s=row.length; if(/campaign|行銷活動|廣告活動/.test(j)) s+=10; if(/adset|廣告組/.test(j)) s+=8; if(/amountspent|spend|花費|金額已花費|已花費/.test(j)) s+=8; if(/purchase|購買/.test(j)) s+=8; if(s>bs){ bs=s; bi=i; } }); return bi; }
+function dedupeHeader(l,sh,i){ const p=sh.slice(0,i).filter(x=>String(x||"").trim()===l).length; return p?`${l} (${p+1})`:l; }
+function inferCurrency(fn,h){ return "TWD"; }
+function inferLevel(fn,h){ const f=normalizeHeader(fn); const nh=h.map(normalizeHeader); const has=(arr)=>nh.some(x=>arr.includes(x)); const a=has(["廣告組合名稱","廣告組名稱","adsetname"]); const b=has(["廣告名稱","adname"]); if(/廣告組合|adset/.test(f)||(a&&!b)) return "audience"; if(/廣告|ad/.test(f)||b) return "creative"; return "creative"; }
+function getLevelLabel(l){ return l==="audience"?"廣告組合檔（受眾）":"廣告檔（素材）"; }
+function mergeHeaders(){ const seen=new Set(); state.headers=[]; state.files.forEach(f=>{ f.headers.forEach(h=>{ if(!seen.has(h)){ seen.add(h); state.headers.push(h); } }); }); }
+function autoMapHeaders(){ const h=state.headers; const e={...state.mapping}; const n=detectHeaderMapping(h); Object.keys(n).forEach(k=>{ if(!e[k]||!h.includes(e[k])) state.mapping[k]=n[k]||""; }); }
+function detectHeaderMapping(h){ const m={
+  campaign:findColumn(h,["campaignname","campaign","行銷活動名稱","廣告活動名稱","活動名稱"],[]),
+  adSet:findColumn(h,["adsetname","adset","廣告組合名稱","廣告組名稱","廣告組"],[]),
+  ad:findColumn(h,["adname","ad","廣告名稱"],["adset","廣告組"]),
+  audience:"", creative:"",
+  creativeId:findColumn(h,["creativeid","adcreativeid","creative_id","素材id","素材編號","廣告素材id","廣告素材編號"],[]),
+  spend:findColumn(h,["amountspent","spend","花費金額","金額已花費","已花費金額","花費"],["cpa","costper","每次","單次"]),
+  impressions:findColumn(h,["impressions","impression","曝光","曝光次數"],[]),
+  linkClicks:findColumn(h,["linkclicks","link_clicks","inlineLinkClicks","連結點擊","連結點擊次數","點擊連結"],["ctr","rate","率"]),
+  purchaseValue:findColumn(h,["purchasevalue","purchase_value","purchaseconversionvalue","websitepurchaseconversionvalue","conversionvalue","購買轉換值","購買轉換價值","網站購買轉換值","購買價值"],["roas","return","成本","cost"]),
+  purchases:findColumn(h,["websitepurchases","purchases","purchase","購買","網站購買","購買次數"],["value","conversionvalue","轉換值","轉換價值","價值","roas","cost","成本","每次"]),
+  targetCpa:findColumn(h,["targetcpa","target_cpa","目標cpa","目標每次購買成本","目標成交成本"],[]),
+  targetRoas:findColumn(h,["targetroas","target_roas","目標roas","目標廣告投報率"],[])
+}; m.audience=m.adSet; m.creative=m.ad; return m; }
+function findColumn(h,inc,exc){ const ni=inc.map(normalizeHeader); const ne=exc.map(normalizeHeader); const c=h.map(x=>{ const n=normalizeHeader(x); if(ne.some(t=>t&&n.includes(t))) return null; let s=0; ni.forEach(t=>{ if(!t) return; if(n===t) s+=100; else if(n.includes(t)) s+=50; }); return s?{header:x,score:s}:null; }).filter(Boolean).sort((a,b)=>b.score-a.score); return c[0]?.header||""; }
+
+// ===== Report =====
+function buildReport(){
+  const ex=1; const ms=parseNumber($("#minimumSpend")?.value);
+  const missing=getMissingRequiredFields(); const rows=[]; let src=0; let rmv=0;
+  state.files.forEach(f=>{ const fac=1; const lvl=f.level||inferLevel(f.name,f.headers);
+    const cols={ campaign:resolveColumn(f,"campaign"), adSet:resolveColumn(f,"adSet"), ad:resolveColumn(f,"ad"),
+      audience:resolveColumn(f,"audience"), creative:resolveColumn(f,"creative"),
+      creativeId:resolveColumn(f,"creativeId"), spend:resolveColumn(f,"spend"), impressions:resolveColumn(f,"impressions"),
+      linkClicks:resolveColumn(f,"linkClicks"), purchaseValue:resolveColumn(f,"purchaseValue"), purchases:resolveColumn(f,"purchases"),
+      targetCpa:resolveColumn(f,"targetCpa"), targetRoas:resolveColumn(f,"targetRoas") };
+    f.rows.forEach((r,i)=>{ const ca=getCell(r,cols.campaign); const as=getCell(r,cols.adSet); const ad=getCell(r,cols.ad);
+      const au0=getCell(r,cols.audience)||as||"未命名受眾"; const rcr=getCell(r,cols.creative)||ad||"未命名素材";
+      const au=(state.audienceRenames&&state.audienceRenames[au0])||au0;
+      const cr=normalizeCreativeName(rcr); const cid=String(getCell(r,cols.creativeId)||cr).trim()||"未命名素材";
+      const sp=parseNumber(getCell(r,cols.spend))*fac; const im=parseNumber(getCell(r,cols.impressions));
+      const lc=parseNumber(getCell(r,cols.linkClicks)); const pv=parseNumber(getCell(r,cols.purchaseValue))*fac;
+      const pc=parseNumber(getCell(r,cols.purchases)); const tc=parseNumber(getCell(r,cols.targetCpa));
+      const tr=parseNumber(getCell(r,cols.targetRoas));
+      const g=classifyRow([ca,as,ad,au0,cr].join(" ")); src++;
+      if(sp<=0 && pv<=0 && pc<=0 && im<=0 && lc<=0){ rmv++; return; }
+      rows.push({ sourceFile:f.name, sourceCurrency:f.currency, level:lvl, rowIndex:i+1, group:g,
+        campaign:ca||"未命名活動", adSet:as||"未命名廣告組合", ad:ad||"未命名廣告",
+        audience:au, audienceOriginal:au0, creative:cr, creativeId:cid, rawCreative:rcr, spend:sp, impressions:im,
+        linkClicks:lc, purchaseValue:pv, purchases:pc, targetCpa:tc, targetRoas:tr });
+    });
+  });
+  const pri=getPrimaryRows(rows); const audR=rows.filter(r=>r.level==="audience"); const creR=rows.filter(r=>r.level==="creative");
+  const fil=filterRowsBySelectedGroup(pri); const filA=filterRowsBySelectedGroup(audR); const filC=filterRowsBySelectedGroup(creR);
+  const rep={ exchangeRate:ex, minimumSpend:ms, missing, rows, sourceRowCount:src, removedZeroSpend:rmv,
+    primaryRows:pri, audienceRows:audR, creativeRows:creR, filteredRows:fil,
+    byGroup:summarize(pri,"group"), byAudience:summarize(filA,"audience",["group"]),
+    byCreative:summarizeCreativePerformance(filC), byCampaign:summarize(fil,"group"),
+    rawCheck:buildRawCheck(rows), totals:sumRows(fil), metricSourceLabel:getMetricSourceLabel(pri) };
+  state.lastReport=rep; return rep;
+}
+function getMissingRequiredFields(){ const req=[
+  ["creativeId","creative_id"],["spend","spend"],["impressions","impressions"],["linkClicks","link_clicks"],
+  ["purchaseValue","purchase_value"],["purchases","purchases"],["targetCpa","target_cpa"],["targetRoas","target_roas"]
+]; return req.filter(([k])=>!state.mapping[k]).map(([,l])=>l); }
+function getCell(r,c){ if(!c) return ""; return r[c]??""; }
+function resolveColumn(f,k){ const s=state.mapping[k]; if(s&&f.headers.includes(s)) return s; const fb=detectHeaderMapping(f.headers); return fb[k]||""; }
+function getPrimaryRows(rows){ const a=rows.filter(r=>r.level==="audience"); if(a.length) return a; const c=rows.filter(r=>r.level==="creative"); if(c.length) return c; return rows; }
+function filterRowsBySelectedGroup(rows){ return rows.filter(r=>state.selectedGroup==="all"||r.group===state.selectedGroup); }
+function getMetricSourceLabel(rows){ if(rows.some(r=>r.level==="audience")) return "整體以廣告組合檔計算"; if(rows.some(r=>r.level==="creative")) return "整體以廣告檔計算"; return ""; }
+function classifyRow(t){ const l=String(t||"").toLowerCase(); for(const r of state.rules){ const ks=splitKeywords(r.keywords); if(ks.some(k=>l.includes(k))) return r.name; } return state.fallbackGroupName||"官網活動"; }
+function splitKeywords(v){ return String(v||"").split(/[,\n，、]/).map(k=>k.trim().toLowerCase()).filter(Boolean); }
+function normalizeCreativeName(n){ let t=String(n||"").trim(); if(!t) return "未命名素材"; t=t.replace(/[“”"]/g,"").replace(/\s+/g," ").replace(/\s*[-–—]\s*/g," - ").trim(); let p=""; while(p!==t){ p=t; t=t.replace(/\s*-\s*(複本|副本|copy)(\s*\d+)?\s*$/i,"").trim(); } return t||"未命名素材"; }
+function summarize(rows,pk,ck=[]){ const m=new Map(); rows.forEach(r=>{ const kv=r[pk]||"未命名"; const cv=ck.map(k=>r[k]||"").filter(Boolean); const k=[kv,...cv].join("|||"); if(!m.has(k)) m.set(k,{ name:kv, context:cv.join(" / "), spend:0, purchaseValue:0, purchases:0, rows:0, originals:[] }); const it=m.get(k); it.spend+=r.spend; it.purchaseValue+=r.purchaseValue; it.purchases+=r.purchases; it.rows++; if(pk==="audience" && r.audienceOriginal && !it.originals.includes(r.audienceOriginal)) it.originals.push(r.audienceOriginal); }); return Array.from(m.values()).map(enrich).sort(comparePerf); }
+function summarizeCreativePerformance(rows){
+  const m=new Map();
+  rows.forEach(r=>{
+    const id=String(r.creativeId||r.creative||"未命名素材").trim()||"未命名素材";
+    if(!m.has(id)) m.set(id,{ name:id, creativeId:id, context:"", group:"", groups:[], spend:0, impressions:0, linkClicks:0, purchaseValue:0, purchases:0, rows:0, targetCpaWeighted:0, targetCpaWeight:0, targetRoasWeighted:0, targetRoasWeight:0 });
+    const it=m.get(id); it.spend+=Number(r.spend)||0; it.impressions+=Number(r.impressions)||0; it.linkClicks+=Number(r.linkClicks)||0; it.purchaseValue+=Number(r.purchaseValue)||0; it.purchases+=Number(r.purchases)||0; it.rows++;
+    if(r.group&&!it.groups.includes(r.group)) it.groups.push(r.group);
+    const w=Math.max(Number(r.spend)||0,1);
+    if(Number(r.targetCpa)>0){ it.targetCpaWeighted+=Number(r.targetCpa)*w; it.targetCpaWeight+=w; }
+    if(Number(r.targetRoas)>0){ it.targetRoasWeighted+=Number(r.targetRoas)*w; it.targetRoasWeight+=w; }
+  });
+  const out=Array.from(m.values()).map(it=>{
+    const base=enrich({ ...it, context:it.groups.join(" / "), group:it.groups[0]||"", targetCpa:it.targetCpaWeight>0?it.targetCpaWeighted/it.targetCpaWeight:0, targetRoas:it.targetRoasWeight>0?it.targetRoasWeighted/it.targetRoasWeight:0 });
+    base.ctr=base.impressions>0?base.linkClicks/base.impressions:0;
+    base.cvr=base.linkClicks>0?base.purchases/base.linkClicks:0;
+    base.aov=base.purchases>0?base.purchaseValue/base.purchases:0;
+    return base;
+  });
+  const mature=out.filter(isMatureCreative);
+  const medianCtr=median(mature.map(x=>x.ctr).filter(x=>x>=0));
+  const medianCvr=median(mature.map(x=>x.cvr).filter(x=>x>=0));
+  out.forEach(row=>scoreCreative(row,medianCtr,medianCvr));
+  out.sort(compareCreativeRank).forEach((row,i)=>{ row.rank=i+1; });
+  return out;
+}
+function median(vals){ const a=vals.map(Number).filter(Number.isFinite).sort((x,y)=>x-y); if(!a.length) return 0; const mid=Math.floor(a.length/2); return a.length%2?a[mid]:(a[mid-1]+a[mid])/2; }
+function cappedScore(n,d){ if(!Number.isFinite(n)||!Number.isFinite(d)||d<=0) return 0; return Math.min(n/d,2)/2*100; }
+function isMatureCreative(row){ return row.purchases>=5 && row.targetCpa>0 && row.spend>=row.targetCpa*2; }
+function getCreativeStatus(row){
+  if(isMatureCreative(row)) return "成熟素材";
+  if(row.purchases>=1) return "潛力素材";
+  if(row.targetCpa>0 && row.spend>=row.targetCpa*1.5) return "建議停用素材";
+  return "待觀察素材";
+}
+function scoreCreative(row,medianCtr,medianCvr){
+  row.status=getCreativeStatus(row);
+  row.cpaScore=row.status==="成熟素材"?cappedScore(row.targetCpa,row.cpa):null;
+  row.roasScore=row.status==="成熟素材"?cappedScore(row.roas,row.targetRoas):null;
+  row.cvrScore=row.status==="成熟素材"?cappedScore(row.cvr,medianCvr):null;
+  row.ctrScore=row.status==="成熟素材"?cappedScore(row.ctr,medianCtr):null;
+  row.scaleScore=row.status==="成熟素材"?Math.min(row.purchases/10,1)*100:null;
+  row.totalScore=row.status==="成熟素材"
+    ? row.cpaScore*0.4 + row.roasScore*0.25 + row.cvrScore*0.15 + row.ctrScore*0.1 + row.scaleScore*0.1
+    : null;
+  row.reason=getCreativeReason(row);
+  row.recommendation=getCreativeRecommendation(row);
+}
+function getCreativeReason(row){
+  if(row.status==="成熟素材") return `成熟樣本；CPA ${formatCurrency.format(row.cpa)}、ROAS ${row.roas.toFixed(2)}x、購買 ${formatNumber.format(row.purchases)} 筆`;
+  if(row.status==="潛力素材") return `樣本不足；已有 ${formatNumber.format(row.purchases)} 筆購買，先看 ROAS、CPA 與購買數`;
+  if(row.status==="建議停用素材") return `0 購買且花費已達 target_cpa 1.5 倍以上`;
+  if(row.targetCpa>0 && row.spend>=row.targetCpa) return `0 購買，花費已超過 target_cpa 但未達停用門檻`;
+  return `0 購買且花費低於 target_cpa，依 CTR 觀察`;
+}
+function getCreativeRecommendation(row){
+  if(row.status==="成熟素材"){
+    if(row.totalScore>=80) return "優先放量，逐步提高預算並監控 CPA/ROAS";
+    if(row.totalScore>=60) return "穩定投放，小幅測試放量";
+    return "保守放量，先優化素材或受眾";
+  }
+  if(row.status==="潛力素材") return row.purchases>=3?"保留測試，累積至 5 筆購買後再判定":"保留小預算測試，避免過早放量";
+  if(row.status==="建議停用素材") return "建議停用或重做素材，預算轉往成熟/高潛力素材";
+  return "保留觀察，累積點擊與購買資料";
+}
+function compareCreativeRank(a,b){
+  const order={"成熟素材":0,"潛力素材":1,"待觀察素材":2,"建議停用素材":3};
+  const oa=order[a.status]??9, ob=order[b.status]??9; if(oa!==ob) return oa-ob;
+  if(a.status==="成熟素材") return (b.totalScore||0)-(a.totalScore||0) || b.purchases-a.purchases || b.spend-a.spend;
+  if(a.status==="潛力素材") return b.roas-a.roas || (a.cpa||Infinity)-(b.cpa||Infinity) || b.purchases-a.purchases || b.spend-a.spend;
+  if(a.status==="待觀察素材") return b.ctr-a.ctr || b.linkClicks-a.linkClicks || a.spend-b.spend;
+  if(a.status==="建議停用素材") return b.spend-a.spend;
+  return 0;
+}
+function sumRows(rows){ return enrich(rows.reduce((a,r)=>{ a.spend+=r.spend; a.purchaseValue+=r.purchaseValue; a.purchases+=r.purchases; a.rows++; return a; }, { name:"總計", context:"", spend:0, purchaseValue:0, purchases:0, rows:0 })); }
+function enrich(it){ const roas=it.spend>0?it.purchaseValue/it.spend:0; const cpa=it.purchases>0?it.spend/it.purchases:0; return {...it, roas, cpa }; }
+function comparePerf(a,b){ const ah=a.purchases>0?1:0; const bh=b.purchases>0?1:0; if(ah!==bh) return bh-ah; if(b.roas!==a.roas) return b.roas-a.roas; if(ah&&b.cpa!==a.cpa) return a.cpa-b.cpa; if(b.purchaseValue!==a.purchaseValue) return b.purchaseValue-a.purchaseValue; return a.spend-b.spend; }
+function buildRawCheck(rows){ return rows.map(r=>({ name:r.level==="audience"?r.audience:r.creative, context:`${r.group} / ${getLevelLabel(r.level)} / ${r.sourceFile} / ${r.sourceCurrency}`, spend:r.spend, purchaseValue:r.purchaseValue, purchases:r.purchases, roas:r.spend>0?r.purchaseValue/r.spend:0, cpa:r.purchases>0?r.spend/r.purchases:0, rows:1, group:r.group })).sort(comparePerf); }
+
+function escapeHtml(v){ return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"); }
+function escapeAttr(v){ return escapeHtml(v); }
+function csvEscape(v){ const t=String(v??""); return /[",\r\n]/.test(t)?`"${t.replace(/"/g,'""')}"`:t; }
+function round(v){ return Math.round((Number(v)||0)*100)/100; }
+function compactCurrency(v){ const n=Number(v)||0; if(Math.abs(n)>=1e6) return `$${(n/1e6).toFixed(1)}M`; if(Math.abs(n)>=1e3) return `$${Math.round(n/1e3)}k`; return `$${formatNumber.format(n)}`; }
+function getRoasClass(r){ if(r>=3) return "good"; if(r>=1.5) return "warn"; if(r>0) return "bad"; return ""; }
+function getGroupKey(n){ const s=String(n||"").toLowerCase(); if(s.includes("再行銷")||s.includes("remarketing")||s.includes("retargeting")||/\brt\b/.test(s)) return "remarketing"; if(s.includes("開團")||s.includes("團購")||s.includes("合作")||s.includes("kol")||s.includes("influencer")) return "groupbuy"; return "web"; }
+function getGroupColor(n){ const k=getGroupKey(n); if(k==="groupbuy") return { main:"#b89687", border:"#9a7a6c" }; if(k==="remarketing") return { main:"#8a9bb0", border:"#6f8398" }; return { main:"#9bab9b", border:"#7e927e" }; }
+function isClientView(){ return new URLSearchParams(window.location.search).get("client")==="1"; }
+function getReportRowCount(r){ if(typeof r.rowCount==="number") return r.rowCount; return r.rows?.length||0; }
+function getPrimaryRowCount(r){ if(typeof r.primaryRowCount==="number") return r.primaryRowCount; return r.primaryRows?.length||r.byGroup?.reduce((s,x)=>s+(x.rows||0),0)||0; }
+
+// ===== Render =====
+function renderReport(){
+  const inClient=!!state.clientPayload;
+  const monthKeys=inClient&&state.clientPayload.months?Object.keys(state.clientPayload.months).sort():getSortedMonthKeys();
+  const hasMonths=monthKeys.length>0;
+  let report=null;
+  if(inClient) report=state.clientPayload;
+  else if(state.files.length>0) report=buildReport();
+  const rc=report?getReportRowCount(report):0; const has=rc>0;
+  $("#exportButton").disabled=!has;
+  $("#pdfButton").disabled=!has&&!hasMonths;
+  $("#clientLinkButton").disabled=!has&&!hasMonths;
+  if($("#downloadHtmlButton")) $("#downloadHtmlButton").disabled=!has&&!hasMonths;
+  if($("#downloadJsonButton")) $("#downloadJsonButton").disabled=!has&&!hasMonths;
+  $("#copySummaryButton").disabled=!has;
+  $("#rowCount").textContent=has?`${formatNumber.format(rc)} 列有效`:(hasMonths?`${monthKeys.length} 個已儲存月份`:"尚未匯入");
+  renderMappingAlert(has?(report.missing||[]):[]);
+  renderAllMonthBars(); renderActiveMonthBanner();
+  if(state.section==="overview"){
+    if(hasMonths&&state.overviewMode==="ytd"){
+      $("#overviewEmpty").style.display="none"; $("#ytdView").hidden=false; $("#monthDetailView").hidden=true;
+      renderYTDOverview();
+    } else if(has){
+      $("#overviewEmpty").style.display="none"; $("#ytdView").hidden=true; $("#monthDetailView").hidden=false;
+      renderMonthDetailContent(report);
+    } else {
+      $("#overviewEmpty").style.display=""; $("#ytdView").hidden=true; $("#monthDetailView").hidden=true; destroyCharts();
+    }
+    return;
+  }
+  // audience：兩種模式（cards / detail），detail 內含 受眾包成效 + 素材成效 兩張表
+  if(state.section==="audience"){
+    const mode=state.audienceMode;
+    const $empty=$(`#audienceEmpty`), $cards=$(`#audienceCardsView`), $body=$(`#audienceBody`);
+    if(!hasMonths&&!has){ $empty.style.display=""; $cards.hidden=true; $body.hidden=true; destroyCharts(); return; }
+    if(mode==="cards"&&hasMonths){
+      $empty.style.display="none"; $cards.hidden=false; $body.hidden=true;
+      renderMonthCardsForSection("audience");
+    } else if(has){
+      $empty.style.display="none"; $cards.hidden=true; $body.hidden=false;
+      renderAnyTable(report,"audience","audienceTableContainer","audienceFilterBar");
+      renderAnyTable(report,"creative","creativeTableContainer","creativeFilterBar");
+      // 更新月份切換下拉
+      populateMonthSelect("#audienceMonthSelect");
+    } else {
+      $empty.style.display=""; $cards.hidden=true; $body.hidden=true; destroyCharts();
+    }
+    return;
+  }
+  toggleEmptyStates(has);
+  if(!has){ destroyCharts(); return; }
+  if(state.section==="raw") renderAnyTable(report,"raw","rawTableContainer","rawFilterBar");
+}
+function renderMonthCardsForSection(sec){
+  const inClient=!!state.clientPayload;
+  const monthKeys=inClient&&state.clientPayload.months?Object.keys(state.clientPayload.months).sort():getSortedMonthKeys();
+  const reps={}; monthKeys.forEach(k=>{ reps[k]=getMonthReport(k); });
+  const target=$(`#${sec}MonthCards`);
+  if(!target) return;
+  const action=sec==="audience"?"data-audience-card":"data-creative-card";
+  const cardsHtml=[...monthKeys].reverse().map(k=>{ const r=reps[k]; if(!r||!r.totals) return ""; const m=inClient?state.clientPayload.months[k]:state.savedMonths[k]; const t=r.totals; const cur=state.activeMonth===k;
+    return `<a class="month-card-link ${cur?"current":""}" ${action}="${escapeAttr(k)}">
+      <div class="mc-head"><div class="mc-title">${escapeHtml((m&&m.label)||k)}</div><div class="mc-arrow">→</div></div>
+      <div class="mc-stats">
+        <div><span class="mc-label">花費</span><span class="mc-val spend">${formatCurrency.format(t.spend)}</span></div>
+        <div><span class="mc-label">轉換值</span><span class="mc-val rev">${formatCurrency.format(t.purchaseValue)}</span></div>
+        <div><span class="mc-label">ROAS</span><span class="mc-val roas">${(t.roas||0).toFixed(2)}x</span></div>
+        <div><span class="mc-label">購買</span><span class="mc-val purch">${formatNumber.format(t.purchases)}</span></div>
+        <div><span class="mc-label">CPA</span><span class="mc-val cpp">${t.purchases>0?formatCurrency.format(t.cpa):"—"}</span></div>
+      </div>
+    </a>`;
+  }).join("");
+  target.innerHTML=cardsHtml||`<div class="month-empty-msg" style="padding:14px;text-align:center;">尚未儲存月份</div>`;
+}
+function destroyCharts(){ Object.values(state.charts).forEach(c=>c?.destroy?.()); state.charts={}; }
+function toggleEmptyStates(has){ ["audience","creative","raw"].forEach(s=>{ const e=$(`#${s}Empty`); const b=$(`#${s}Body`); if(e) e.style.display=has?"none":""; if(b) b.hidden=!has; }); }
+function renderMappingAlert(m){ const a=$("#mappingAlert"); if(!m.length){ a.classList.remove("show"); a.textContent=""; return; } a.classList.add("show"); a.textContent=`請確認欄位對應：${m.join("、")}。`; }
+
+function clearMonthReportCache(){ state.monthReportCache={}; }
+function getMonthReport(key){
+  if(state.clientPayload&&state.clientPayload.months){
+    const md=state.clientPayload.months[key]; if(!md) return null;
+    return Object.assign({ rows:[], primaryRows:[], audienceRows:[], creativeRows:[], filteredRows:[], rawCheck:[], removedZeroSpend:0, missing:[], minimumSpend:0, exchangeRate:1, metricSourceLabel:"" }, md);
+  }
+  if(state.monthReportCache[key]) return state.monthReportCache[key];
+  const m=state.savedMonths[key]; if(!m) return null;
+  const saved={ files:state.files, mapping:state.mapping, rules:state.rules, fallbackGroupName:state.fallbackGroupName, creativeImages:state.creativeImages, selectedGroup:state.selectedGroup, lastReport:state.lastReport };
+  try {
+    state.files=m.files||[]; state.mapping=m.mapping||saved.mapping; state.rules=m.rules||saved.rules;
+    state.fallbackGroupName=m.fallbackGroupName||saved.fallbackGroupName; state.creativeImages=m.creativeImages||{}; state.selectedGroup="all";
+    const r=buildReport(); state.monthReportCache[key]=r; return r;
+  } finally { Object.assign(state, saved); }
+}
+function renderYTDOverview(){
+  const inClient=!!state.clientPayload;
+  const monthKeys=inClient&&state.clientPayload.months?Object.keys(state.clientPayload.months).sort():getSortedMonthKeys();
+  if(!monthKeys.length) return;
+  const reps={}; monthKeys.forEach(k=>{ reps[k]=getMonthReport(k); });
+  let s=0,v=0,p=0;
+  monthKeys.forEach(k=>{ const r=reps[k]; if(!r||!r.totals) return; s+=r.totals.spend||0; v+=r.totals.purchaseValue||0; p+=r.totals.purchases||0; });
+  const rs=s>0?v/s:0; const cp=p>0?s/p:0;
+  const ys=[...new Set(monthKeys.map(k=>k.split("-")[0]))]; const yr=ys.length===1?ys[0]:`${ys[0]}–${ys[ys.length-1]}`;
+  $("#ytdBannerTitle").textContent=`${yr} 年累計（${monthKeys.length} 個月）`;
+  $("#ytdSpend").textContent=formatCurrency.format(s);
+  $("#ytdValue").textContent=formatCurrency.format(v);
+  $("#ytdRoas").textContent=rs.toFixed(2)+"x";
+  $("#ytdPurch").textContent=formatNumber.format(p);
+  $("#ytdCpp").textContent=p>0?formatCurrency.format(cp):"—";
+  const labels=monthKeys.map(k=>{ const m=inClient?state.clientPayload.months[k]:state.savedMonths[k]; return (m&&m.label)||k; });
+  const sa=monthKeys.map(k=>reps[k]?.totals?.spend||0);
+  const va=monthKeys.map(k=>reps[k]?.totals?.purchaseValue||0);
+  const ra=monthKeys.map(k=>reps[k]?.totals?.roas||0);
+  // Auto-scale ROAS axis with padding so single-month dot doesn't get clipped
+  const _rValid = ra.filter(x=>x>0);
+  const rMin = _rValid.length ? Math.min(..._rValid) : 0;
+  const rMax = ra.length ? Math.max(...ra) : 1;
+  const rPad = Math.max(1, (rMax - rMin) * 0.3) || 1;
+  drawChart("ytdTrendChart",{
+    data:{ labels, datasets:[
+      { type:"bar", label:"花費 (TWD)", data:sa, backgroundColor:"rgba(155,171,155,0.55)", borderColor:"#9bab9b", borderWidth:1, borderRadius:4, yAxisID:"y", barPercentage:0.55, categoryPercentage:0.7 },
+      { type:"bar", label:"轉換值 (TWD)", data:va, backgroundColor:"rgba(138,155,176,0.65)", borderColor:"#8a9bb0", borderWidth:1, borderRadius:4, yAxisID:"y", barPercentage:0.55, categoryPercentage:0.7 },
+      { type:"line", label:"ROAS (x)", data:ra, borderColor:"#d97706", backgroundColor:"#d97706", borderWidth:2.5, pointRadius:5, pointHoverRadius:7, tension:0.2, yAxisID:"y1" }
+    ]},
+    options:{ responsive:true, maintainAspectRatio:false, interaction:{ mode:"index", intersect:false },
+      layout:{ padding:{ top:10, right:8, bottom:4, left:0 } },
+      plugins:{ legend:{ position:"bottom", labels:{ font:{ size:11 }, padding:14 } },
+        tooltip:{ backgroundColor:"rgba(31,41,39,0.95)", padding:10, callbacks:{ label:(ctx)=>{ const x=ctx.parsed.y; if(String(ctx.dataset.label).includes("ROAS")) return ctx.dataset.label+": "+x.toFixed(2)+"x"; return ctx.dataset.label+": "+formatCurrency.format(x); } } } },
+      scales:{
+        y:{ position:"left", beginAtZero:true, ticks:{ callback:v=>compactCurrency(v) } },
+        y1:{ position:"right", grid:{ drawOnChartArea:false }, suggestedMin:Math.max(0, rMin - rPad), suggestedMax:rMax + rPad, ticks:{ callback:v=>v.toFixed(1)+"x" } },
+        x:{ ticks:{ font:{ size:11 }, maxRotation:0, autoSkip:false }, grid:{ display:false } }
+      }
+    }
+  });
+  const cardsHtml=[...monthKeys].reverse().map(k=>{ const r=reps[k]; if(!r||!r.totals) return ""; const m=inClient?state.clientPayload.months[k]:state.savedMonths[k]; const t=r.totals; const cur=state.activeMonth===k;
+    return `<a class="month-card-link ${cur?"current":""}" data-month-card="${escapeAttr(k)}">
+      <div class="mc-head"><div class="mc-title">${escapeHtml((m&&m.label)||k)}</div><div class="mc-arrow">→</div></div>
+      <div class="mc-stats">
+        <div><span class="mc-label">花費</span><span class="mc-val spend">${formatCurrency.format(t.spend)}</span></div>
+        <div><span class="mc-label">轉換值</span><span class="mc-val rev">${formatCurrency.format(t.purchaseValue)}</span></div>
+        <div><span class="mc-label">ROAS</span><span class="mc-val roas">${(t.roas||0).toFixed(2)}x</span></div>
+        <div><span class="mc-label">購買</span><span class="mc-val purch">${formatNumber.format(t.purchases)}</span></div>
+        <div><span class="mc-label">CPA</span><span class="mc-val cpp">${t.purchases>0?formatCurrency.format(t.cpa):"—"}</span></div>
+      </div>
+    </a>`;
+  }).join("");
+  $("#ytdMonthCards").innerHTML=cardsHtml;
+}
+function renderMonthDetailContent(report){
+  populateMonthSelect("#monthDetailSelect");
+  renderGroupSegments(report); renderMetrics(report); renderCharts(report);
+  // 受眾包成效表格直接顯示在受眾累積排行下方
+  renderAudienceTableInOverview(report);
+}
+function populateMonthSelect(selector){
+  const sel=$(selector); if(!sel) return;
+  const inClient=!!state.clientPayload;
+  const monthKeys=inClient&&state.clientPayload.months?Object.keys(state.clientPayload.months).sort():getSortedMonthKeys();
+  if(!monthKeys.length){ sel.innerHTML=""; return; }
+  const cur=state.activeMonth;
+  sel.innerHTML=[...monthKeys].reverse().map(k=>{ const m=inClient?state.clientPayload.months[k]:state.savedMonths[k]; const label=(m&&m.label)||k; return `<option value="${escapeAttr(k)}" ${k===cur?"selected":""}>${escapeHtml(label)}</option>`; }).join("");
+}
+function renderAudienceTableInOverview(report){
+  const container=$("#overviewAudienceTable"); if(!container) return;
+  const rows=report.byAudience||[];
+  if(!rows.length){ container.innerHTML=`<div class="month-empty-msg" style="padding:14px;">沒有受眾資料</div>`; return; }
+  // Group by context (group name) for collapsible
+  const grouped={};
+  rows.forEach(r=>{ const g=r.context||r.group||"未分組"; (grouped[g]||=[]).push(r); });
+  const ord=Object.keys(grouped).sort((a,b)=>{
+    const sa=grouped[a].reduce((x,r)=>x+r.spend,0);
+    const sb=grouped[b].reduce((x,r)=>x+r.spend,0);
+    return sb-sa;
+  });
+  let body="";
+  ord.forEach((gn,gi)=>{ const list=grouped[gn]; const sub=list.reduce((a,r)=>{a.spend+=r.spend;a.purchaseValue+=r.purchaseValue;a.purchases+=r.purchases;return a;},{spend:0,purchaseValue:0,purchases:0});
+    const sR=sub.spend>0?sub.purchaseValue/sub.spend:0; const sC=sub.purchases>0?sub.spend/sub.purchases:0; const k=getGroupKey(gn); const id=`ovgr-${gi}`;
+    body+=`<tr class="group-row open" data-group-toggle="${id}"><td><span class="caret"></span><b>${escapeHtml(gn)}</b> <span style="color:#9c9489;font-weight:400;font-size:11px;">· ${list.length} 個受眾</span></td><td>${formatCurrency.format(sub.spend)}</td><td>${formatCurrency.format(sub.purchaseValue)}</td><td class="roas-cell ${getRoasClass(sR)}">${sR.toFixed(2)}x</td><td>${formatNumber.format(sub.purchases)}</td><td>${sub.purchases>0?formatCurrency.format(sC):"—"}</td></tr>`;
+    list.forEach(r=>{ body+=`<tr class="child show" data-group="${id}"><td>└ ${fmtName(r.name)}</td><td>${formatCurrency.format(r.spend)}</td><td>${formatCurrency.format(r.purchaseValue)}</td><td class="roas-cell ${getRoasClass(r.roas)}">${r.roas.toFixed(2)}x</td><td>${formatNumber.format(r.purchases)}</td><td>${r.purchases>0?formatCurrency.format(r.cpa):"—"}</td></tr>`; });
+    body+=`<tr class="subtotal ${k}"><td>${escapeHtml(gn)} 小計</td><td>${formatCurrency.format(sub.spend)}</td><td>${formatCurrency.format(sub.purchaseValue)}</td><td>${sR.toFixed(2)}x</td><td>${formatNumber.format(sub.purchases)}</td><td>${sub.purchases>0?formatCurrency.format(sC):"—"}</td></tr>`;
+  });
+  const tot=rows.reduce((a,r)=>{a.spend+=r.spend;a.purchaseValue+=r.purchaseValue;a.purchases+=r.purchases;return a;},{spend:0,purchaseValue:0,purchases:0});
+  const tR=tot.spend>0?tot.purchaseValue/tot.spend:0; const tC=tot.purchases>0?tot.spend/tot.purchases:0;
+  body+=`<tr class="total"><td>總計（${rows.length} 個受眾）</td><td>${formatCurrency.format(tot.spend)}</td><td>${formatCurrency.format(tot.purchaseValue)}</td><td>${tR.toFixed(2)}x</td><td>${formatNumber.format(tot.purchases)}</td><td>${tot.purchases>0?formatCurrency.format(tC):"—"}</td></tr>`;
+  container.innerHTML=`<div class="table-wrap"><table class="roi-table"><thead><tr><th>受眾包</th><th>花費金額</th><th>購買轉換值</th><th>ROAS</th><th>購買數</th><th>CPA</th></tr></thead><tbody>${body}</tbody></table></div>`;
+}
+function setOverviewMode(mode,monthKey){
+  state.overviewMode=mode;
+  if(mode==="month"&&monthKey){
+    if(state.clientPayload&&state.clientPayload.months){
+      const md=state.clientPayload.months[monthKey];
+      if(md){ state.activeMonth=monthKey; Object.assign(state.clientPayload, { totals:md.totals, byGroup:md.byGroup||[], byAudience:md.byAudience||[], byCreative:md.byCreative||[], byCampaign:md.byCampaign||[] }); state.creativeImages={...(state.creativeImages||{}), ...(md.creativeImages||{})}; }
+    } else {
+      const m=state.savedMonths[monthKey]; if(m){
+        state.files=JSON.parse(JSON.stringify(m.files||[])); state.mapping={...(m.mapping||{})}; state.rules=(m.rules||[]).map(r=>({...r}));
+        state.fallbackGroupName=m.fallbackGroupName||"官網活動"; state.creativeImages={...(state.creativeImages||{}), ...(m.creativeImages||{})};
+        state.activeMonth=monthKey; state.selectedGroup="all"; mergeHeaders();
+        renderFiles(); renderMappings(); renderRules(); renderActiveMonthBanner(); renderMonthSaveInputs();
+      }
+    }
+  }
+  state.tableSearch=""; state.tableGroupFilter="all"; renderReport(); window.scrollTo(0,0);
+}
+function renderGroupSegments(r){ const g=[{ name:"全部分組", value:"all", count:getPrimaryRowCount(r) }, ...r.byGroup.map(x=>({ name:x.name, value:x.name, count:x.rows }))];
+  $("#groupSegments").innerHTML=g.map(x=>`<button class="group-segment ${state.selectedGroup===x.value?"active":""}" type="button" data-group="${escapeAttr(x.value)}">${escapeHtml(x.name)} <span style="opacity:0.6;font-weight:500;">· ${formatNumber.format(x.count)}</span></button>`).join(""); }
+function renderMetrics(r){ const t=r.totals; const cpa=t.purchases>0?formatCurrency.format(t.cpa):"—";
+  $("#metricGrid").innerHTML=[
+    ["spend","花費金額",formatCurrency.format(t.spend)],
+    ["revenue","購買轉換值",formatCurrency.format(t.purchaseValue)],
+    ["roas","ROAS",`${t.roas.toFixed(2)}x`],
+    ["purch","購買數",`${formatNumber.format(t.purchases)} 筆`],
+    ["cpp","CPA",cpa]
+  ].map(([c,l,v])=>`<div class="kpi ${c}"><div class="kpi-label">${escapeHtml(l)}</div><div class="kpi-value">${escapeHtml(v)}</div></div>`).join("");
+}
+function renderCharts(r){
+  renderChartSummaries(r);
+  if(!window.Chart) return;
+  const gr=[...r.byGroup].sort(comparePerf);
+  drawChart("valueChart",{ type:"bar",
+    data:{ labels:["花費","轉換值"], datasets:gr.map(x=>{ const c=getGroupColor(x.name); return { label:x.name, data:[x.spend,x.purchaseValue], backgroundColor:c.main, borderColor:c.border, borderWidth:1, borderRadius:4 }; }) },
+    options:baseChartOptions({ scales:{ y:{ beginAtZero:true, ticks:{ callback:v=>compactCurrency(v) } } }, plugins:{ tooltip:{ callbacks:{ label:ctx=>`${ctx.dataset.label}: ${formatCurrency.format(ctx.raw)}` } } } })
+  });
+  drawChart("purchaseChart",{ type:"bar",
+    data:{ labels:["購買次數","CPA"], datasets:gr.map(x=>{ const c=getGroupColor(x.name); return { label:x.name, data:[x.purchases,x.cpa], backgroundColor:c.main, borderColor:c.border, borderWidth:1, borderRadius:4 }; }) },
+    options:baseChartOptions({ scales:{ y:{ beginAtZero:true, ticks:{ callback:v=>formatNumber.format(v) } } }, plugins:{ tooltip:{ callbacks:{ label:ctx=>{ const l=ctx.dataIndex===1?formatCurrency.format(ctx.raw):`${formatNumber.format(ctx.raw)} 筆`; return `${ctx.dataset.label}: ${l}`; } } } } })
+  });
+  const aud=[...r.byAudience].sort((a,b)=>b.purchaseValue-a.purchaseValue).slice(0,10);
+  drawChart("audienceChart",{ type:"bar",
+    data:{ labels:aud.map(x=>x.name), datasets:[
+      { label:"花費 (TWD)", data:aud.map(x=>x.spend), backgroundColor:"rgba(155,171,155,0.55)", borderColor:"#9bab9b", borderWidth:1, borderRadius:4 },
+      { label:"轉換值 (TWD)", data:aud.map(x=>x.purchaseValue), backgroundColor:"rgba(138,155,176,0.65)", borderColor:"#8a9bb0", borderWidth:1, borderRadius:4 }
+    ]},
+    options:baseChartOptions({ indexAxis:"y", scales:{ x:{ beginAtZero:true, ticks:{ callback:v=>compactCurrency(v) } } }, plugins:{ tooltip:{ callbacks:{ label:ctx=>`${ctx.dataset.label}: ${formatCurrency.format(ctx.raw)}`, afterBody:items=>{ const i=items[0].dataIndex; const x=aud[i]; return [`購買: ${x.purchases} 筆`, `ROAS: ${x.roas.toFixed(2)}x`, `CPA: ${x.purchases>0?formatCurrency.format(x.cpa):"—"}`]; } } } } })
+  });
+}
+function renderChartSummaries(r){ const gr=[...r.byGroup].sort(comparePerf);
+  const html=(rows,which)=>rows.map(x=>{ const k=getGroupKey(x.name);
+    const items=which==="value"?
+      [["花費",formatCurrency.format(x.spend)],["轉換值",formatCurrency.format(x.purchaseValue)],["ROAS",x.roas.toFixed(2)+"x"]]:
+      [["購買",formatNumber.format(x.purchases)+" 筆"],["CPA",x.purchases>0?formatCurrency.format(x.cpa):"—"],["ROAS",x.roas.toFixed(2)+"x"]];
+    return `<div class="stat-box ${k}"><div class="slabel"><span class="stat-dot ${k}"></span>${escapeHtml(x.name)}</div><div class="multi-stats">${items.map(([l,v])=>`<div class="ms-item"><span class="ms-label">${l}</span><span class="ms-value">${v}</span></div>`).join("")}</div></div>`;
+  }).join("");
+  $("#valueSummary").innerHTML=html(gr,"value"); $("#valueSummary").style.setProperty("--stat-cols",String(Math.max(1,gr.length)));
+  $("#purchaseSummary").innerHTML=html(gr,"purch"); $("#purchaseSummary").style.setProperty("--stat-cols",String(Math.max(1,gr.length)));
+}
+function drawChart(id,cfg){ const c=document.getElementById(id); if(!c) return; if(state.charts[id]) state.charts[id].destroy(); state.charts[id]=new Chart(c,cfg); }
+function baseChartOptions(extra={}){ return deepMerge({ responsive:true, maintainAspectRatio:false, interaction:{ mode:"index", intersect:false },
+  plugins:{ legend:{ position:"bottom", labels:{ boxWidth:12, color:"#5a5246", font:{ size:11 } } }, tooltip:{ backgroundColor:"rgba(31,41,39,0.95)", padding:10 } },
+  scales:{ x:{ grid:{ color:"rgba(180,168,143,0.25)" }, ticks:{ color:"#7a7167", font:{ size:11 } } }, y:{ grid:{ color:"rgba(180,168,143,0.25)" }, ticks:{ color:"#7a7167", font:{ size:11 } } } }
+}, extra); }
+function deepMerge(t,s){ const o={...t}; Object.keys(s).forEach(k=>{ if(s[k]&&typeof s[k]==="object"&&!Array.isArray(s[k])) o[k]=deepMerge(o[k]||{},s[k]); else o[k]=s[k]; }); return o; }
+
+// ===== Pretty audience/creative name (replace _ with space for natural wrap) =====
+function fmtName(name){ return escapeHtml(String(name||"")).replace(/_+/g," "); }
+
+// ===== Render KPI + compare for sec-audience / sec-creative =====
+function renderSectionKPIs(r, prefix, includeAud){
+  const t=r.totals; const cpa=t.purchases>0?formatCurrency.format(t.cpa):"—";
+  const grid=$(`#${prefix}MetricGrid`); if(grid){
+    grid.innerHTML=[
+      ["spend","花費金額",formatCurrency.format(t.spend)],
+      ["revenue","購買轉換值",formatCurrency.format(t.purchaseValue)],
+      ["roas","ROAS",`${t.roas.toFixed(2)}x`],
+      ["purch","購買數",`${formatNumber.format(t.purchases)} 筆`],
+      ["cpp","CPA",cpa]
+    ].map(([c,l,v])=>`<div class="kpi ${c}"><div class="kpi-label">${escapeHtml(l)}</div><div class="kpi-value">${escapeHtml(v)}</div></div>`).join("");
+  }
+  if(!window.Chart) return;
+  const gr=[...r.byGroup].sort(comparePerf);
+  const html=(rows,which)=>rows.map(x=>{ const k=getGroupKey(x.name);
+    const items=which==="value"?
+      [["花費",formatCurrency.format(x.spend)],["轉換值",formatCurrency.format(x.purchaseValue)],["ROAS",x.roas.toFixed(2)+"x"]]:
+      [["購買",formatNumber.format(x.purchases)+" 筆"],["CPA",x.purchases>0?formatCurrency.format(x.cpa):"—"],["ROAS",x.roas.toFixed(2)+"x"]];
+    return `<div class="stat-box ${k}"><div class="slabel"><span class="stat-dot ${k}"></span>${escapeHtml(x.name)}</div><div class="multi-stats">${items.map(([l,v])=>`<div class="ms-item"><span class="ms-label">${l}</span><span class="ms-value">${v}</span></div>`).join("")}</div></div>`;
+  }).join("");
+  const vs=$(`#${prefix}ValueSummary`); if(vs){ vs.innerHTML=html(gr,"value"); vs.style.setProperty("--stat-cols",String(Math.max(1,gr.length))); }
+  const ps=$(`#${prefix}PurchaseSummary`); if(ps){ ps.innerHTML=html(gr,"purch"); ps.style.setProperty("--stat-cols",String(Math.max(1,gr.length))); }
+  drawChart(`${prefix}ValueChart`,{ type:"bar",
+    data:{ labels:["花費","轉換值"], datasets:gr.map(x=>{ const c=getGroupColor(x.name); return { label:x.name, data:[x.spend,x.purchaseValue], backgroundColor:c.main, borderColor:c.border, borderWidth:1, borderRadius:4 }; }) },
+    options:baseChartOptions({ scales:{ y:{ beginAtZero:true, ticks:{ callback:v=>compactCurrency(v) } } }, plugins:{ tooltip:{ callbacks:{ label:ctx=>`${ctx.dataset.label}: ${formatCurrency.format(ctx.raw)}` } } } })
+  });
+  drawChart(`${prefix}PurchaseChart`,{ type:"bar",
+    data:{ labels:["購買次數","CPA"], datasets:gr.map(x=>{ const c=getGroupColor(x.name); return { label:x.name, data:[x.purchases,x.cpa], backgroundColor:c.main, borderColor:c.border, borderWidth:1, borderRadius:4 }; }) },
+    options:baseChartOptions({ scales:{ y:{ beginAtZero:true, ticks:{ callback:v=>formatNumber.format(v) } } }, plugins:{ tooltip:{ callbacks:{ label:ctx=>{ const l=ctx.dataIndex===1?formatCurrency.format(ctx.raw):`${formatNumber.format(ctx.raw)} 筆`; return `${ctx.dataset.label}: ${l}`; } } } } })
+  });
+  if(includeAud){
+    const aud=[...r.byAudience].sort((a,b)=>b.purchaseValue-a.purchaseValue).slice(0,10);
+    drawChart(`${prefix}AudienceChart`,{ type:"bar",
+      data:{ labels:aud.map(x=>x.name), datasets:[
+        { label:"花費 (TWD)", data:aud.map(x=>x.spend), backgroundColor:"rgba(155,171,155,0.55)", borderColor:"#9bab9b", borderWidth:1, borderRadius:4 },
+        { label:"轉換值 (TWD)", data:aud.map(x=>x.purchaseValue), backgroundColor:"rgba(138,155,176,0.65)", borderColor:"#8a9bb0", borderWidth:1, borderRadius:4 }
+      ]},
+      options:baseChartOptions({ indexAxis:"y", scales:{ x:{ beginAtZero:true, ticks:{ callback:v=>compactCurrency(v) } } }, plugins:{ tooltip:{ callbacks:{ label:ctx=>`${ctx.dataset.label}: ${formatCurrency.format(ctx.raw)}` } } } })
+    });
+  }
+}
+
+// ===== Tables =====
+function renderAnyTable(r,kind,containerId,filterId){
+  const sets={
+    audience:{ rows:r.byAudience, label:"受眾包" },
+    creative:{ rows:r.byCreative, label:"素材" },
+    raw:{ rows:r.rawCheck, label:"項目" }
+  }; const ds=sets[kind]; if(!ds) return;
+  // For audience/creative, also render the KPI + compare panels at the top
+  if(kind==="audience") renderSectionKPIs(r,"aud",true);
+  else if(kind==="creative") renderSectionKPIs(r,"cre",false);
+  renderFilterBar(r,kind,filterId);
+  const fil=applyTableFilters(ds.rows);
+  const cont=$(`#${containerId}`);
+  if(!fil.length){ cont.innerHTML=`<div class="empty"><strong>沒有符合條件的資料</strong></div>`; return; }
+  if(kind==="raw"){
+    let body="";
+    fil.forEach(row=>{ body+=`<tr><td><b>${escapeHtml(row.name)}</b><div style="font-size:11px;color:#8a8170;margin-top:2px;">${escapeHtml(row.context||"")}</div></td><td>${formatCurrency.format(row.spend)}</td><td>${formatCurrency.format(row.purchaseValue)}</td><td class="roas-cell ${getRoasClass(row.roas)}">${row.roas.toFixed(2)}x</td><td>${formatNumber.format(row.purchases)}</td><td>${row.purchases>0?formatCurrency.format(row.cpa):"—"}</td></tr>`; });
+    cont.innerHTML=`<div class="table-wrap"><table class="roi-table"><thead><tr><th>項目 / 來源</th><th>花費金額</th><th>購買轉換值</th><th>ROAS</th><th>購買數</th><th>CPA</th></tr></thead><tbody>${body}</tbody></table></div>`;
+    return;
+  }
+  if(kind==="creative"){
+    renderCreativeRankingTable(fil,cont);
+    return;
+  }
+  // grouped (audience/creative)
+  const grouped={};
+  fil.forEach(row=>{ const g=row.context||row.group||"未分組"; (grouped[g]||=[]).push(row); });
+  const ord=Object.keys(grouped).sort((a,b)=>{ const sa=grouped[a].reduce((x,r)=>x+r.spend,0); const sb=grouped[b].reduce((x,r)=>x+r.spend,0); return sb-sa; });
+  let body="";
+  ord.forEach((gn,gi)=>{ const list=grouped[gn]; const sub=list.reduce((a,r)=>{a.spend+=r.spend;a.purchaseValue+=r.purchaseValue;a.purchases+=r.purchases;return a;},{spend:0,purchaseValue:0,purchases:0});
+    const sR=sub.spend>0?sub.purchaseValue/sub.spend:0; const sC=sub.purchases>0?sub.spend/sub.purchases:0; const k=getGroupKey(gn); const id=`grp-${kind}-${gi}`;
+    body+=`<tr class="group-row open" data-group-toggle="${id}"><td><span class="caret"></span><b>${escapeHtml(gn)}</b> <span style="color:#9c9489;font-weight:400;font-size:11px;">· ${list.length} 個 ${ds.label}</span></td><td>${formatCurrency.format(sub.spend)}</td><td>${formatCurrency.format(sub.purchaseValue)}</td><td class="roas-cell ${getRoasClass(sR)}">${sR.toFixed(2)}x</td><td>${formatNumber.format(sub.purchases)}</td><td>${sub.purchases>0?formatCurrency.format(sC):"—"}</td></tr>`;
+    list.forEach(row=>{ const cell=kind==="creative"?renderCreativeCell(row):renderAudienceCell(row); body+=`<tr class="child show" data-group="${id}"><td>└ ${cell}</td><td>${formatCurrency.format(row.spend)}</td><td>${formatCurrency.format(row.purchaseValue)}</td><td class="roas-cell ${getRoasClass(row.roas)}">${row.roas.toFixed(2)}x</td><td>${formatNumber.format(row.purchases)}</td><td>${row.purchases>0?formatCurrency.format(row.cpa):"—"}</td></tr>`; });
+    body+=`<tr class="subtotal ${k}"><td>${escapeHtml(gn)} 小計</td><td>${formatCurrency.format(sub.spend)}</td><td>${formatCurrency.format(sub.purchaseValue)}</td><td>${sR.toFixed(2)}x</td><td>${formatNumber.format(sub.purchases)}</td><td>${sub.purchases>0?formatCurrency.format(sC):"—"}</td></tr>`;
+  });
+  const tot=fil.reduce((a,r)=>{a.spend+=r.spend;a.purchaseValue+=r.purchaseValue;a.purchases+=r.purchases;return a;},{spend:0,purchaseValue:0,purchases:0});
+  const tR=tot.spend>0?tot.purchaseValue/tot.spend:0; const tC=tot.purchases>0?tot.spend/tot.purchases:0;
+  body+=`<tr class="total"><td>總計（${fil.length} 個 ${ds.label}）</td><td>${formatCurrency.format(tot.spend)}</td><td>${formatCurrency.format(tot.purchaseValue)}</td><td>${tR.toFixed(2)}x</td><td>${formatNumber.format(tot.purchases)}</td><td>${tot.purchases>0?formatCurrency.format(tC):"—"}</td></tr>`;
+  cont.innerHTML=`<div class="table-wrap"><table class="roi-table"><thead><tr><th>${escapeHtml(ds.label)}</th><th>花費金額</th><th>購買轉換值</th><th>ROAS</th><th>購買數</th><th>CPA</th></tr></thead><tbody>${body}</tbody></table></div>`;
+}
+function renderCreativeRankingTable(rows,cont){
+  const body=rows.map(row=>{
+    const score=row.status==="成熟素材"&&Number.isFinite(row.totalScore)?row.totalScore.toFixed(1):row.status==="潛力素材"?"樣本不足":"—";
+    return `<tr>
+      <td>${formatNumber.format(row.rank||0)}</td>
+      <td><b>${escapeHtml(row.creativeId||row.name)}</b>${row.context?`<div style="font-size:11px;color:#8a8170;margin-top:2px;">${escapeHtml(row.context)}</div>`:""}</td>
+      <td><span class="creative-status ${getCreativeStatusClass(row.status)}">${escapeHtml(row.status||"")}</span></td>
+      <td>${escapeHtml(score)}</td>
+      <td>${formatCurrency.format(row.spend||0)}</td>
+      <td>${formatNumber.format(row.purchases||0)}</td>
+      <td>${row.purchases>0?formatCurrency.format(row.cpa):"—"}</td>
+      <td class="roas-cell ${getRoasClass(row.roas||0)}">${(row.roas||0).toFixed(2)}x</td>
+      <td>${formatPercent.format(row.ctr||0)}</td>
+      <td>${formatPercent.format(row.cvr||0)}</td>
+      <td class="reason-cell">${escapeHtml(row.reason||"")}</td>
+      <td class="action-cell">${escapeHtml(row.recommendation||"")}</td>
+    </tr>`;
+  }).join("");
+  cont.innerHTML=`<div class="table-wrap"><table class="roi-table creative-ranking-table"><thead><tr><th>素材排名</th><th>creative_id</th><th>素材狀態</th><th>總分</th><th>spend</th><th>purchases</th><th>CPA</th><th>ROAS</th><th>CTR</th><th>CVR</th><th>排序原因</th><th>操作建議</th></tr></thead><tbody>${body}</tbody></table></div>`;
+}
+function getCreativeStatusClass(status){ if(status==="成熟素材") return "mature"; if(status==="潛力素材") return "potential"; if(status==="建議停用素材") return "pause"; return "observe"; }
+function renderAudienceCell(row){
+  if(isClientView()) return fmtName(row.name);
+  const originals=(row.originals||[]).join("|");
+  return `<span style="display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;"><span>${fmtName(row.name)}</span><button class="mini-button rename-audience-btn" type="button" data-rename-audience="${escapeAttr(row.name)}" data-rename-originals="${escapeAttr(originals)}" title="重新命名受眾" style="font-size:10px;padding:1px 6px;border-color:#d4cfc0;color:#8a8170;">✏️</button></span>`;
+}
+function renderCreativeCell(row){
+  if(isClientView()) return `<div class="creative-cell"><div class="creative-thumb">${state.creativeImages[getCreativeKey(row.name)]?`<img src="${escapeAttr(state.creativeImages[getCreativeKey(row.name)])}" alt="">`:""}</div><div class="meta"><strong>${fmtName(row.name)}</strong></div></div>`;
+  const k=getCreativeKey(row.name); const im=state.creativeImages[k];
+  const thumbHtml=im
+    ? `<img src="${escapeAttr(im)}" alt="">`
+    : `<span class="ph" style="font-size:9px;text-align:center;line-height:1.2;">點此<br>上傳</span>`;
+  return `<div class="creative-cell"><div class="creative-thumb" data-upload-creative-key="${escapeAttr(k)}" style="cursor:pointer;" title="點擊上傳/更換素材圖">${thumbHtml}</div><div class="meta"><strong>${fmtName(row.name)}</strong>${im?`<button class="mini-button" type="button" data-remove-creative-image="${escapeAttr(k)}" style="margin-top:4px;font-size:10px;padding:1px 6px;">移除圖</button>`:""}</div></div>`;
+}
+function setAudienceRename(originals, newName){
+  const nn=String(newName||"").trim(); if(!nn) return;
+  const list=(Array.isArray(originals)?originals:[originals]).filter(Boolean);
+  if(!list.length) return;
+  // Also catch existing entries that map to any item in list (chained rename)
+  Object.entries(state.audienceRenames||{}).forEach(([k,v])=>{
+    if(list.includes(v)) list.push(k);
+  });
+  list.forEach(o=>{
+    if(o===nn) delete state.audienceRenames[o];
+    else state.audienceRenames[o]=nn;
+  });
+  clearMonthReportCache(); saveSession(); renderReport(); renderRenameList();
+  if(typeof autoSyncIfEnabled==="function") autoSyncIfEnabled();
+}
+function renderRenameList(){
+  const cont=$("#renameList"); if(!cont) return;
+  const entries=Object.entries(state.audienceRenames||{});
+  if(!entries.length){ cont.innerHTML=`<div class="small-note" style="color:#9c9489;">目前沒有任何重新命名規則。到「每月成效」表格按受眾右側 ✏️ 即可新增。</div>`; return; }
+  cont.innerHTML=entries.map(([orig,nm])=>`
+    <div style="display:flex;gap:10px;align-items:center;padding:8px 12px;border:1px solid #ebe5d6;border-radius:7px;background:#fdfbf5;margin-bottom:6px;">
+      <span style="flex:1;font-size:13px;color:#5a5246;line-height:1.5;word-break:break-all;"><span style="color:#9c9489;text-decoration:line-through;">${escapeHtml(orig)}</span> <span style="color:#b0a48f;margin:0 6px;">→</span> <b style="color:#1a1a1a;">${escapeHtml(nm)}</b></span>
+      <button type="button" data-remove-rename="${escapeAttr(orig)}" class="mini-button" style="color:#dc2626;border-color:#fbcaca;flex-shrink:0;">移除</button>
+    </div>`).join("");
+}
+function renderFilterBar(r,kind,id){
+  if(!id) return;
+  const node=$(`#${id}`); if(!node) return;
+  const groups=["all", ...r.byGroup.map(x=>x.name)];
+  const ph=kind==="creative"?"搜尋素材或分組":kind==="audience"?"搜尋受眾或分組":"搜尋項目";
+  const sid=`${id}_search`, gid=`${id}_group`;
+  node.innerHTML=`<div class="field"><label for="${sid}">搜尋</label><input id="${sid}" data-table-search type="text" value="${escapeAttr(state.tableSearch)}" placeholder="${escapeAttr(ph)}"></div><div class="field"><label for="${gid}">分組篩選</label><select id="${gid}" data-table-group-filter>${groups.map(g=>`<option value="${escapeAttr(g)}" ${state.tableGroupFilter===g?"selected":""}>${escapeHtml(g==="all"?"全部分組":g)}</option>`).join("")}</select></div>`;
+}
+function applyTableFilters(rows){ const k=state.tableSearch.trim().toLowerCase();
+  return rows.filter(r=>{ if(state.tableGroupFilter!=="all"&&r.context!==state.tableGroupFilter&&r.name!==state.tableGroupFilter&&r.group!==state.tableGroupFilter&&!(r.groups||[]).includes(state.tableGroupFilter)&&!String(r.context||"").includes(state.tableGroupFilter)) return false; if(!k) return true; return [r.name,r.creativeId,r.context,r.group,r.status,r.reason].filter(Boolean).some(v=>String(v).toLowerCase().includes(k)); });
+}
+
+// ===== Setup section render =====
+function renderFiles(){ const fl=$("#fileList"); if(!state.files.length){ fl.innerHTML=""; return; }
+  fl.innerHTML=state.files.map(f=>`<div class="file-row" data-file-id="${f.id}"><div class="file-main"><div><div class="file-name">${escapeHtml(f.name)}</div><div class="file-meta">${formatNumber.format(f.rows.length)} 列 · ${f.headers.length} 欄</div></div><button class="remove-file" type="button" data-remove-file="${f.id}">移除</button></div><div class="two-cols"><div class="field"><label>幣別</label><select data-file-currency="${f.id}"><option value="TWD" selected>台幣</option></select></div><div class="field"><label>層級</label><select data-file-level="${f.id}"><option value="audience" ${f.level==="audience"?"selected":""}>廣告組合檔</option><option value="creative" ${f.level==="creative"?"selected":""}>廣告檔</option></select></div></div></div>`).join("");
+}
+function renderMappings(){ const opts=[`<option value="">尚未選擇</option>`, ...state.headers.map(h=>`<option value="${escapeAttr(h)}">${escapeHtml(h)}</option>`)].join("");
+  $("#mappingGrid").innerHTML=fields.map(f=>`<div class="field"><label for="map-${f.key}">${f.label}</label><select id="map-${f.key}" data-map-key="${f.key}">${opts}</select></div>`).join("");
+  fields.forEach(f=>{ const s=$(`#map-${f.key}`); if(s) s.value=state.mapping[f.key]||""; });
+}
+function renderRules(){
+  $("#rulePanel").innerHTML=`${state.rules.map(r=>`
+    <div style="border:1px solid #ebe5d6;border-radius:8px;padding:10px 12px;margin-bottom:10px;background:#fdfbf5;">
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
+        <input type="text" data-rule-name-id="${escapeAttr(r.id)}" value="${escapeAttr(r.name)}" placeholder="分組名稱（例如：開團活動）" style="flex:1;border:1px solid #d4cfc0;background:#fff;border-radius:6px;padding:6px 10px;font-size:13px;font-weight:700;">
+        <button type="button" data-rule-delete-id="${escapeAttr(r.id)}" style="appearance:none;border:1px solid #fbcaca;background:#fff;color:#dc2626;border-radius:6px;padding:5px 10px;font-size:11px;cursor:pointer;">刪除</button>
+      </div>
+      <label style="font-size:11px;color:#5a5246;font-weight:600;display:block;margin-bottom:2px;">關鍵字（逗號分隔，命中即歸入此組）</label>
+      <textarea data-rule-id="${escapeAttr(r.id)}" style="width:100%;min-height:50px;border:1px solid #d4cfc0;background:#fff;border-radius:6px;padding:6px 10px;font-size:13px;line-height:1.5;resize:vertical;box-sizing:border-box;">${escapeHtml(r.keywords)}</textarea>
+    </div>
+  `).join("")}
+    <button type="button" data-rule-add style="appearance:none;border:1px dashed #d97706;background:#fef9f0;color:#d97706;border-radius:8px;padding:10px;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-bottom:14px;">＋ 新增分組</button>
+    <div class="field">
+      <label for="fallbackGroup">其他（不符合上面任何分組的資料歸入此名稱）</label>
+      <input id="fallbackGroup" type="text" data-fallback-group value="${escapeAttr(state.fallbackGroupName)}">
+    </div>
+    <div class="small-note" style="margin-top:6px;">分組順序依上至下，先命中者勝出。每月若主推 KOL 不同，可隨時新增/刪除分組。</div>
+  `;
+}
+function addNewRule(){
+  const id="r"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  state.rules.push({ id, name:"新分組", keywords:"" });
+  saveSession(); clearMonthReportCache(); renderRules(); renderReport();
+}
+function deleteRule(id){
+  if(!confirm("確定刪除這個分組？刪除後相關資料會歸到「其他」。")) return;
+  state.rules=state.rules.filter(r=>r.id!==id);
+  saveSession(); clearMonthReportCache(); renderRules(); renderReport();
+}
+
+// ===== Brand & Logo =====
+function applyFavicon(){
+  let link=document.querySelector('link[rel="icon"]'); if(!link){ link=document.createElement('link'); link.rel='icon'; document.head.appendChild(link); }
+  if(state.logo){ link.href=state.logo; link.type=state.logo.startsWith('data:image/svg')?'image/svg+xml':'image/png'; }
+  else {
+    // Default: simple color square with brand initial
+    const init=(state.brandName||"M").trim().charAt(0)||"M";
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#d97706"/><text x="50%" y="55%" text-anchor="middle" font-size="38" fill="#fff" font-weight="800" font-family="Arial,sans-serif">${init.replace(/[<>"&]/g,"")}</text></svg>`;
+    link.href='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(svg)));
+    link.type='image/svg+xml';
+  }
+  // Render preview if visible
+  const prev=document.getElementById("logoPreview");
+  if(prev){ if(state.logo) prev.innerHTML=`<img src="${escapeAttr(state.logo)}" alt="logo" style="width:100%;height:100%;object-fit:cover;">`;
+    else prev.innerHTML=`<span style="font-size:11px;color:#b0a48f;">無 Logo</span>`; }
+}
+async function handleLogoUpload(file){
+  if(!file||!file.type.startsWith("image/")) return;
+  try {
+    const dataUrl=await resizeImageFile(file);
+    state.logo=dataUrl; saveSession(); applyFavicon(); renderBrand();
+  } catch(e){ console.error(e); alert("Logo 載入失敗"); }
+}
+function removeLogo(){ state.logo=""; saveSession(); applyFavicon(); renderBrand(); }
+function renderBrand(){ const b=(state.brandName||"").trim(); const sub=(state.brandSubtitle||"").trim();
+  const prefix=b?`${b} `:"";
+  Object.entries(PAGE_TITLES).forEach(([id,t])=>{ const e=document.querySelector(`#${id} .page-title`); if(e) e.textContent=b?`${prefix}${t}`:t; });
+  const bh=document.querySelector(".brand h1"); const bp=document.querySelector(".brand p");
+  if(bh) bh.textContent=b?`${prefix}廣告報表`:"Meta 電商廣告分析";
+  if(bp) bp.textContent=sub||(b?"成效總覽 / 每月成效 / 每月素材":"開團、官網、受眾、素材");
+  const mh=document.querySelector(".mobile-header .mh-title"); if(mh) mh.textContent=b?`${prefix}廣告報表`:"Meta 廣告分析";
+  document.title=b?`${prefix}廣告報表`:"Meta 電商轉換廣告分析";
+  const ni=$("#brandName"); if(ni&&document.activeElement!==ni) ni.value=b;
+  const si=$("#brandSubtitle"); if(si&&document.activeElement!==si) si.value=sub;
+}
+
+// ===== Section nav =====
+function setSection(s){ state.section=s; $$(".sb-tab").forEach(t=>t.classList.toggle("active",t.dataset.section===s));
+  $$(".tab-content").forEach(x=>x.classList.toggle("active",x.id===`sec-${s}`)); toggleSidebar(false); state.tableSearch=""; state.tableGroupFilter="all";
+  const hasMonths=state.clientPayload?.months?Object.keys(state.clientPayload.months).length>0:Object.keys(state.savedMonths).length>0;
+  if(s==="overview"&&hasMonths) state.overviewMode="ytd";
+  if(s==="audience"&&hasMonths) state.audienceMode="cards";
+  if(s==="creative"&&hasMonths) state.creativeMode="cards";
+  renderReport();
+  if(s==="setup"){ renderSavedMonthsList(); renderActiveMonthBanner(); renderMonthSaveInputs(); renderCreativeImagesPreview(); renderGithubInputs(); renderRenameList(); }
+  window.scrollTo(0,0);
+}
+// 進入單月詳細
+function enterMonthDetail(sec,monthKey){
+  if(!monthKey||!state.savedMonths[monthKey]) {
+    // client mode: still allow
+    if(!state.clientPayload?.months?.[monthKey]) return;
+  }
+  // 載入該月資料到 state.files（若為 admin 模式）
+  if(!state.clientPayload){
+    const m=state.savedMonths[monthKey];
+    if(m){
+      state.files=JSON.parse(JSON.stringify(m.files||[]));
+      state.mapping={...(m.mapping||{})};
+      state.rules=(m.rules||[]).map(r=>({...r}));
+      state.fallbackGroupName=m.fallbackGroupName||"官網活動";
+      // Merge: keep global images, add month-specific on top (so old global uploads don't get wiped)
+      state.creativeImages={...(state.creativeImages||{}), ...(m.creativeImages||{})};
+      mergeHeaders();
+    }
+  } else {
+    // client: switch the active payload to this month's pre-computed data
+    const md=state.clientPayload.months[monthKey];
+    if(md){ Object.assign(state.clientPayload, { totals:md.totals, byGroup:md.byGroup||[], byAudience:md.byAudience||[], byCreative:md.byCreative||[], byCampaign:md.byCampaign||[] }); state.creativeImages={...(state.creativeImages||{}), ...(md.creativeImages||{})}; }
+  }
+  state.activeMonth=monthKey;
+  state.selectedGroup="all"; state.tableSearch=""; state.tableGroupFilter="all";
+  if(sec==="audience") state.audienceMode="detail";
+  if(sec==="creative") state.creativeMode="detail";
+  renderReport(); window.scrollTo(0,0);
+}
+
+// ===== Multi-month =====
+function getSortedMonthKeys(){ return Object.keys(state.savedMonths).sort(); }
+function deepClone(v){ return JSON.parse(JSON.stringify(v)); }
+function suggestNextKey(){ const n=new Date(Date.now()+8*3600*1000); return `${n.getUTCFullYear()}-${String(n.getUTCMonth()+1).padStart(2,"0")}`; }
+function defaultLabelFromKey(k){ const m=k.match(/^(\d{4})-(\d{2})$/); return m?`${m[1]} 年 ${parseInt(m[2],10)} 月`:k; }
+function saveCurrentAsMonth(k,l){ if(!k) return; state.savedMonths[k]={ key:k, label:l||defaultLabelFromKey(k), files:deepClone(state.files), mapping:{...state.mapping}, rules:state.rules.map(r=>({...r})), fallbackGroupName:state.fallbackGroupName, creativeImages:{...state.creativeImages}, savedAt:new Date().toISOString() }; state.activeMonth=k; clearMonthReportCache(); saveSession(); renderSavedMonthsList(); renderActiveMonthBanner(); renderAllMonthBars(); autoSyncIfEnabled(); }
+function loadMonthIntoDraft(k){ const m=state.savedMonths[k]; if(!m) return; state.files=deepClone(m.files); state.mapping={...m.mapping}; state.rules=m.rules.map(r=>({...r})); state.fallbackGroupName=m.fallbackGroupName||"官網活動"; state.creativeImages={...m.creativeImages}; state.activeMonth=k; state.draftLabel=m.label; state.draftKey=k; state.tableSearch=""; state.tableGroupFilter="all"; state.selectedGroup="all"; mergeHeaders(); renderFiles(); renderMappings(); renderRules(); renderSavedMonthsList(); renderActiveMonthBanner(); renderMonthSaveInputs(); renderAllMonthBars(); renderReport(); }
+function deleteMonth(k){ if(!state.savedMonths[k]) return; if(!confirm(`確定刪除「${state.savedMonths[k].label}」？`)) return; clearMonthReportCache(); delete state.savedMonths[k]; if(state.activeMonth===k) state.activeMonth=null; saveSession(); renderSavedMonthsList(); renderActiveMonthBanner(); renderAllMonthBars(); }
+function newDraft(){ state.files=[]; state.headers=[]; Object.keys(state.mapping).forEach(k=>{ state.mapping[k]=""; }); state.creativeImages={}; state.activeMonth=null; state.draftLabel=""; state.draftKey=suggestNextKey(); state.selectedGroup="all"; state.tableSearch=""; state.tableGroupFilter="all"; saveSession(); renderFiles(); renderMappings(); renderRules(); renderActiveMonthBanner(); renderMonthSaveInputs(); renderAllMonthBars(); renderReport(); }
+function renderActiveMonthBanner(){ const el=$("#activeMonthBanner"); if(!el) return;
+  if(state.activeMonth&&state.savedMonths[state.activeMonth]){ const m=state.savedMonths[state.activeMonth]; el.innerHTML=`<div class="active-month-banner"><span>📌 目前編輯中：<b>${escapeHtml(m.label)}</b></span><span style="opacity:0.7;">（修改後按下方「更新此月份」即會儲存）</span><button class="month-action-btn" type="button" data-new-draft style="margin-left:auto;">+ 新增其他月份</button></div>`; }
+  else if(state.files.length>0){ el.innerHTML=`<div class="active-month-banner" style="background:#eff6ff;border-left-color:#1e3a8a;color:#1e3a8a;"><span>💡 此資料尚未儲存為月份，下方填入月份資訊後按「儲存為月份」。</span></div>`; }
+  else el.innerHTML="";
+}
+function renderMonthSaveInputs(){ const lE=$("#monthLabelInput"); const kE=$("#monthKeyInput"); const b=$("#saveMonthBtn"); if(!lE||!kE||!b) return;
+  const k=state.draftKey||(state.activeMonth||suggestNextKey()); const l=state.draftLabel||(state.activeMonth?state.savedMonths[state.activeMonth].label:defaultLabelFromKey(k));
+  lE.value=l; kE.value=k; b.disabled=state.files.length===0; b.textContent=state.activeMonth?"更新此月份":"儲存為月份";
+}
+function renderSavedMonthsList(){ const el=$("#savedMonthsList"); if(!el) return; const ks=getSortedMonthKeys();
+  if(!ks.length){ el.innerHTML=`<div class="month-empty-msg" style="padding:14px;text-align:center;">尚未儲存任何月份。</div>`; return; }
+  el.innerHTML=ks.map(k=>{ const m=state.savedMonths[k]; const fc=(m.files||[]).length; const a=state.activeMonth===k;
+    return `<div class="saved-month-row${a?" active":""}"><div class="smr-info"><div class="smr-label">${escapeHtml(m.label)} ${a?'<span class="m-badge" style="margin-left:4px;">編輯中</span>':""}</div><div class="smr-meta">${escapeHtml(k)} · ${fc} 檔 · ${escapeHtml(m.savedAt.replace("T"," ").slice(0,16))}</div></div><div class="smr-actions"><button class="month-action-btn" type="button" data-load-month="${escapeAttr(k)}">${a?"重新載入":"載入編輯"}</button><button class="month-action-btn" type="button" data-delete-month="${escapeAttr(k)}" style="color:#dc2626;border-color:#fbcaca;">刪除</button></div></div>`;
+  }).join("");
+}
+function setViewingMonth(k){ if(!k||!state.savedMonths[k]) return; loadMonthIntoDraft(k); if(state.section==="overview"){ state.overviewMode="month"; renderReport(); } }
+function renderAllMonthBars(){ ["Audience","Creative","Raw"].forEach(s=>renderMonthBar("monthBar"+s)); const ov=document.getElementById("monthBarOverview"); if(ov) ov.innerHTML=""; }
+function renderMonthBar(id){ const el=document.getElementById(id); if(!el) return; const ks=getSortedMonthKeys(); const da=!state.activeMonth&&state.files.length>0; const v=state.activeMonth||(da?"__draft":null);
+  if(!ks.length&&!da){ el.innerHTML=`<div class="month-empty-msg">尚未儲存月份。</div>`; return; }
+  const tabs=ks.map(k=>{ const m=state.savedMonths[k]; const a=v===k; return `<a class="month-tab ${a?"active":""}" data-view-month="${escapeAttr(k)}">${escapeHtml(m.label)}${a?' <span class="m-badge">編輯中</span>':""}</a>`; }).join("");
+  const dt=da?`<a class="month-tab active" data-view-month="__draft">未儲存草稿 <span class="m-badge">草稿</span></a>`:"";
+  const eb=state.activeMonth?`<button class="month-action-btn" type="button" data-go-edit>編輯此月份</button>`:da?`<button class="month-action-btn" type="button" data-go-edit>前往儲存</button>`:"";
+  const nb=`<button class="month-action-btn" type="button" data-new-draft>+ 新增月份</button>`;
+  el.innerHTML=`<div class="month-picker">${tabs}${dt}</div><div class="month-actions">${eb}${nb}</div>`;
+}
+
+// ===== Compact row + URL encoding =====
+function compactRow(r){ if(!r) return {}; return {
+  n:r.name||"", c:r.context||"", s:Math.round(r.spend||0), v:Math.round(r.purchaseValue||0), p:Math.round(r.purchases||0),
+  r:Math.round(((r.roas||0)+Number.EPSILON)*100)/100, a:Math.round(r.cpa||0), g:r.group||"",
+  cid:r.creativeId||"", im:Math.round(r.impressions||0), lc:Math.round(r.linkClicks||0),
+  ctr:round(r.ctr||0), cvr:round(r.cvr||0), aov:Math.round(r.aov||0), tc:Math.round(r.targetCpa||0), tr:round(r.targetRoas||0),
+  st:r.status||"", sc:Number.isFinite(r.totalScore)?round(r.totalScore):null, why:r.reason||"", rec:r.recommendation||"", rk:r.rank||0
+}; }
+function expandRow(r){ if(!r) return {}; return {
+  name:r.n||"", creativeId:r.cid||r.n||"", context:r.c||"", spend:Number(r.s)||0, purchaseValue:Number(r.v)||0,
+  purchases:Number(r.p)||0, roas:Number(r.r)||0, cpa:Number(r.a)||0, rows:1, group:r.g||r.c||"",
+  impressions:Number(r.im)||0, linkClicks:Number(r.lc)||0, ctr:Number(r.ctr)||0, cvr:Number(r.cvr)||0,
+  aov:Number(r.aov)||0, targetCpa:Number(r.tc)||0, targetRoas:Number(r.tr)||0,
+  status:r.st||"", totalScore:r.sc==null?null:Number(r.sc), reason:r.why||"", recommendation:r.rec||"", rank:Number(r.rk)||0
+}; }
+function buildClientPayload(report){
+  const TOP=10;
+  const months={}; const ks=getSortedMonthKeys();
+  // Build a union of all creative keys actually used (so we only bundle relevant images)
+  ks.forEach(k=>{ const r=getMonthReport(k); if(!r||!r.totals) return; const m=state.savedMonths[k];
+    // Bundle the month's creativeImages, but trim to only ones that match top creatives (to save bytes)
+    const topCreatives=(r.byCreative||[]);
+    const needed=new Set(topCreatives.map(c=>getCreativeKey(c.name)));
+    // Merge global + month-specific so old uploads (pre-V9, only in global) still get included
+    const src={ ...(state.creativeImages||{}), ...(m.creativeImages||{}) };
+    const imgs={};
+    Object.keys(src).forEach(key=>{ if(needed.has(key)) imgs[key]=src[key]; });
+    months[k]={ l:m.label||k, t:compactRow(r.totals), g:(r.byGroup||[]).map(compactRow), a:(r.byAudience||[]).slice(0,TOP).map(compactRow), c:topCreatives.map(compactRow), i:imgs };
+  });
+  const ak=state.activeMonth&&months[state.activeMonth]?state.activeMonth:(ks.length?ks[ks.length-1]:null);
+  return { v:3, bn:state.brandName||"", bs:state.brandSubtitle||"", lg:state.logo||"", am:ak, ms:months };
+}
+function expandClientPayload(p){ if(!p) return null;
+  if(p.v===3||p.ms){
+    const months={}; Object.entries(p.ms||{}).forEach(([k,m])=>{ months[k]={ key:k, label:m.l||k, totals:expandRow(m.t), byGroup:(m.g||[]).map(expandRow), byAudience:(m.a||[]).map(expandRow), byCreative:(m.c||[]).map(expandRow), byCampaign:[], creativeImages:m.i||{} }; });
+    const ak=(p.am&&months[p.am])?p.am:(Object.keys(months).sort().pop()||null); const ac=ak?months[ak]:null;
+    return { type:"v3", brandName:p.bn||"", brandSubtitle:p.bs||"", logo:p.lg||"", activeMonth:ak, monthLabel:ac?ac.label:"", months,
+      totals:ac?ac.totals:{ name:"", spend:0, purchaseValue:0, purchases:0, roas:0, cpa:0 },
+      byGroup:ac?ac.byGroup:[], byAudience:ac?ac.byAudience:[], byCreative:ac?ac.byCreative:[], byCampaign:[], creativeImages:ac?ac.creativeImages||{}:{},
+      rowCount:1, primaryRowCount:0, removedZeroSpend:0, minimumSpend:500, metricSourceLabel:"", missing:[], rawCheck:[], rows:[] };
+  }
+  return p;
+}
+function base64UrlEncode(b){ const C=0x8000; let bin=""; for(let i=0;i<b.length;i+=C) bin+=String.fromCharCode.apply(null,b.subarray(i,i+C)); return btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/g,""); }
+function base64UrlDecode(s){ const b=s.replace(/-/g,"+").replace(/_/g,"/"); const p=b.padEnd(Math.ceil(b.length/4)*4,"="); const bin=atob(p); const out=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) out[i]=bin.charCodeAt(i); return out; }
+async function encodePayloadGzip(j){ const cs=new CompressionStream("gzip"); const w=cs.writable.getWriter(); w.write(new TextEncoder().encode(j)); w.close(); const buf=await new Response(cs.readable).arrayBuffer(); return base64UrlEncode(new Uint8Array(buf)); }
+async function decodePayloadGzip(b){ const by=base64UrlDecode(b); const ds=new DecompressionStream("gzip"); const w=ds.writable.getWriter(); w.write(by); w.close(); return JSON.parse(await new Response(ds.readable).text()); }
+function encodePayloadRaw(j){ return btoa(unescape(encodeURIComponent(j))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/g,""); }
+function decodePayloadRaw(b){ const s=b.replace(/-/g,"+").replace(/_/g,"/"); const p=s.padEnd(Math.ceil(s.length/4)*4,"="); return JSON.parse(decodeURIComponent(escape(atob(p)))); }
+async function encodePayload(p){ const j=JSON.stringify(p); if(typeof CompressionStream!=="undefined"){ try { return await encodePayloadGzip(j); } catch(e) {} } return encodePayloadRaw(j); }
+async function getClientPayloadFromUrl(){ const params=new URLSearchParams(window.location.hash.replace(/^#/,""));
+  let z=params.get("z"); if(z){ if(z.startsWith("z:")) z=z.slice(2); if(typeof DecompressionStream!=="undefined"){ try { return await decodePayloadGzip(z); } catch(e) {} } try { return decodePayloadRaw(z); } catch(e) { return null; } }
+  const r=params.get("report"); if(r){ try { return decodePayloadRaw(r); } catch(e) { return null; } } return null;
+}
+
+// ===== Exports =====
+function buildExportRows(){ if(!state.lastReport) return []; const r=state.lastReport; const out=[["素材排名","creative_id","素材狀態","總分","spend","purchases","CPA","ROAS","CTR","CVR","排序原因","操作建議"]];
+  (r.byCreative||[]).forEach(row=>{ out.push([
+    row.rank||"", row.creativeId||row.name||"", row.status||"", row.status==="成熟素材"&&Number.isFinite(row.totalScore)?round(row.totalScore):row.status==="潛力素材"?"樣本不足":"",
+    round(row.spend), round(row.purchases), row.purchases>0?round(row.cpa):"", round(row.roas), round(row.ctr), round(row.cvr), row.reason||"", row.recommendation||""
+  ]); }); return out; }
+function downloadCsv(){ const rows=buildExportRows(); if(!rows.length) return; const csv=rows.map(r=>r.map(csvEscape).join(",")).join("\r\n"); const blob=new Blob(["﻿",csv],{type:"text/csv;charset=utf-8"}); const url=URL.createObjectURL(blob); const a=document.createElement("a"); a.href=url; a.download=`meta_ads_${new Date().toISOString().slice(0,10)}.csv`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
+function exportPdf(){ Object.values(state.charts).forEach(c=>{ try { c.resize(); } catch(e) {} }); setTimeout(()=>{ Object.values(state.charts).forEach(c=>{ try { c.resize(); c.update("none"); } catch(e) {} }); setTimeout(()=>window.print(),200); },100); }
+// ===== SQLite 短網址 =====
+let _sqlJs=null; let _sqlDb=null; const SQL_DB_PATH="data/links.sqlite";
+async function loadSqlJs(){
+  if(_sqlJs) return _sqlJs;
+  if(!window.initSqlJs){
+    await new Promise((resolve,reject)=>{
+      const s=document.createElement("script");
+      s.src="https://cdn.jsdelivr.net/npm/sql.js@1.10.3/dist/sql-wasm.js";
+      s.onload=resolve; s.onerror=reject; document.head.appendChild(s);
+    });
+  }
+  _sqlJs=await window.initSqlJs({ locateFile:f=>`https://cdn.jsdelivr.net/npm/sql.js@1.10.3/dist/${f}` });
+  return _sqlJs;
+}
+async function loadShortDb(){
+  const SQL=await loadSqlJs();
+  try {
+    const r=await fetch(`./${SQL_DB_PATH}?cb=${Date.now()}`,{ cache:"no-store" });
+    if(r.ok){
+      const buf=await r.arrayBuffer();
+      const db=new SQL.Database(new Uint8Array(buf));
+      // Ensure table exists (older db may not have it)
+      db.run("CREATE TABLE IF NOT EXISTS links (code TEXT PRIMARY KEY, client_key TEXT NOT NULL UNIQUE, long_url TEXT NOT NULL, created_at TEXT NOT NULL, updated_at TEXT NOT NULL)");
+      return db;
+    }
+  } catch(e){ /* not exist yet */ }
+  const db=new SQL.Database();
+  db.run("CREATE TABLE links (code TEXT PRIMARY KEY, client_key TEXT NOT NULL UNIQUE, long_url TEXT NOT NULL, created_at TEXT NOT NULL, updated_at TEXT NOT NULL)");
+  return db;
+}
+function genShortCode(len){
+  const chars="abcdefghijkmnpqrstuvwxyz23456789"; // 移除易混淆字 0,o,1,l,i
+  let s=""; for(let i=0;i<len;i++) s+=chars[Math.floor(Math.random()*chars.length)];
+  return s;
+}
+async function pushSqliteDb(uint8data){
+  syncGithubFromDom();
+  const g=gh(); if(!g.token||!g.owner||!g.repo) throw new Error("請先設定 GitHub Token、Owner、Repo（資料設定第 6 區）");
+  // Base64 encode in chunks
+  let bin=""; const CHUNK=0x8000;
+  for(let i=0;i<uint8data.length;i+=CHUNK) bin+=String.fromCharCode.apply(null,uint8data.subarray(i,i+CHUNK));
+  const content=btoa(bin);
+  const repoPath=`${g.owner}/${g.repo}`;
+  let sha;
+  try { const cur=await githubApi("GET",`${repoPath}/contents/${SQL_DB_PATH}`,null,g.token); sha=cur.sha; } catch(e){}
+  const body={ message:`Update links.sqlite (${new Date().toISOString().slice(0,16)})`, content };
+  if(sha) body.sha=sha;
+  await githubApi("PUT",`${repoPath}/contents/${SQL_DB_PATH}`,body,g.token);
+}
+async function getOrCreateShort(clientKey,longUrl){
+  if(!clientKey) throw new Error("沒有客戶代號");
+  if(!longUrl) throw new Error("沒有長網址");
+  const db=await loadShortDb();
+  let code, isNew=false;
+  // 1. 已存在這個 clientKey → 更新 long_url
+  const existing=db.exec("SELECT code FROM links WHERE client_key = ?",[clientKey]);
+  if(existing.length&&existing[0].values.length){
+    code=existing[0].values[0][0];
+    db.run("UPDATE links SET long_url = ?, updated_at = ? WHERE code = ?",[longUrl,new Date().toISOString(),code]);
+  } else {
+    // 2. 不存在 → 產生唯一新碼
+    for(let i=0;i<30;i++){
+      const cand=genShortCode(5);
+      const check=db.exec("SELECT 1 FROM links WHERE code = ?",[cand]);
+      if(!check.length||!check[0].values.length){ code=cand; break; }
+    }
+    if(!code) throw new Error("無法產生唯一短碼，請重試");
+    db.run("INSERT INTO links (code, client_key, long_url, created_at, updated_at) VALUES (?, ?, ?, ?, ?)",[code,clientKey,longUrl,new Date().toISOString(),new Date().toISOString()]);
+    isNew=true;
+  }
+  const data=db.export();
+  db.close();
+  await pushSqliteDb(data);
+  return { code, isNew };
+}
+async function resolveShortCodeDiag(code){
+  // Returns { url, diag } - diag is detailed status for debugging
+  const diag={ step:"start", dbExists:false, dbSize:0, totalRows:0, found:false };
+  try {
+    const SQL=await loadSqlJs();
+    diag.step="sql.js loaded";
+    try {
+      const r=await fetch(`./${SQL_DB_PATH}?cb=${Date.now()}`,{ cache:"no-store" });
+      diag.httpStatus=r.status;
+      if(r.ok){
+        diag.dbExists=true;
+        const buf=await r.arrayBuffer();
+        diag.dbSize=buf.byteLength;
+        const db=new SQL.Database(new Uint8Array(buf));
+        // Get total row count for diagnosis
+        try {
+          const cnt=db.exec("SELECT COUNT(*) FROM links");
+          if(cnt.length&&cnt[0].values.length) diag.totalRows=cnt[0].values[0][0];
+        } catch(e){ diag.tableError=e.message; }
+        const res=db.exec("SELECT long_url FROM links WHERE code = ?",[code]);
+        db.close();
+        if(res.length&&res[0].values.length){
+          diag.found=true;
+          return { url:res[0].values[0][0], diag };
+        }
+        diag.step="DB found but code not in it";
+      } else {
+        diag.step=`DB 還沒上傳到 GitHub（HTTP ${r.status}）。可能需要等部署完成（1-3 分鐘）`;
+      }
+    } catch(e){ diag.step="DB fetch 失敗: "+(e.message||e); }
+  } catch(e){ diag.step="sql.js 載入失敗: "+(e.message||e); }
+  return { url:null, diag };
+}
+async function resolveShortCode(code){
+  const { url }=await resolveShortCodeDiag(code);
+  return url;
+}
+
+async function openClientLink(){
+  const has=!!state.lastReport; const hasM=Object.keys(state.savedMonths||{}).length>0; if(!has&&!hasM) return;
+  syncGithubFromDom();
+  const g=gh();
+  const btn=$("#clientLinkButton");
+  if(btn){ btn.disabled=true; btn.textContent="壓縮中…"; }
+  console.log("[openClientLink] GitHub config:", { token:g.token?"有":"空", owner:g.owner, repo:g.repo, clientKey:g.clientKey });
+  try {
+    const p=buildClientPayload(state.lastReport);
+    const enc=await encodePayload(p);
+    const url=new URL(window.location.href); url.hash=""; url.search="";
+    url.searchParams.set("client","1");
+    url.hash=`z=${enc}`;
+    const longUrl=url.toString();
+    let finalUrl=longUrl; let usedShort=false; let shortFailReason="";
+    const missing=[];
+    if(!g.token) missing.push("Token");
+    if(!g.owner) missing.push("Owner");
+    if(!g.repo) missing.push("Repo");
+    if(!g.clientKey) missing.push("ClientKey");
+    if(missing.length){
+      shortFailReason="缺："+missing.join("/");
+      console.warn("[short URL] skipped because missing:",missing);
+    } else {
+      if(btn) btn.textContent="產生短碼…";
+      try {
+        const { code, isNew }=await getOrCreateShort(g.clientKey,longUrl);
+        finalUrl=`${window.location.origin}${window.location.pathname}?s=${code}`;
+        usedShort=true;
+        console.log("[short URL] OK code="+code+" isNew="+isNew);
+      } catch(e){
+        shortFailReason=e.message||String(e);
+        console.error("[short URL] failed:",e);
+      }
+    }
+    const sz=(new Blob([finalUrl]).size).toFixed(0);
+    const label=usedShort
+      ? `✓ 已複製短網址（${sz} 字）`
+      : `已複製長網址（${(sz/1024).toFixed(1)} KB）｜短網址失敗：${shortFailReason}`;
+    // 把最終 URL 顯示在側欄按鈕下面，方便檢視/分享
+    let urlDisplay=document.getElementById("clientUrlDisplay");
+    if(!urlDisplay){
+      urlDisplay=document.createElement("div"); urlDisplay.id="clientUrlDisplay";
+      urlDisplay.style.cssText="margin-top:8px;padding:8px 10px;background:#fdf9f5;border:1px solid #efe3d8;border-radius:6px;font-size:11px;color:#1a1a1a;word-break:break-all;line-height:1.5;";
+      $(".sb-actions")?.appendChild(urlDisplay);
+    }
+    urlDisplay.innerHTML=`<div style="color:#8a8170;font-size:10px;margin-bottom:4px;font-weight:700;letter-spacing:0.04em;">${usedShort?"短網址（已複製）":"長網址（已複製）"}</div><a href="${escapeAttr(finalUrl)}" target="_blank" style="color:#1f6feb;text-decoration:none;">${escapeHtml(finalUrl)}</a>`;
+    navigator.clipboard?.writeText(finalUrl).then(()=>{
+      if(btn){ btn.textContent=label; setTimeout(()=>{ btn.textContent="複製業主版連結"; btn.disabled=false; },5000); }
+    }).catch(()=>{ window.prompt("複製業主版連結",finalUrl); if(btn){ btn.textContent="複製業主版連結"; btn.disabled=false; } });
+  } catch(e){ console.error(e); if(btn){ btn.textContent="產生失敗："+e.message; btn.disabled=false; } }
+}
+
+// ===== GitHub Auto-Sync =====
+function parseRepoFromUrl(){
+  const host=window.location.host; const m=host.match(/^([^.]+)\.github\.io$/);
+  const owner=m?m[1]:""; const path=window.location.pathname.replace(/^\/+|\/+$/g,"").split("/")[0]||"";
+  return { owner, repo:path };
+}
+function defaultClientKey(){ return (state.brandName||"client").toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_|_$/g,"").slice(0,20)||"client"; }
+function gh(){ return state.github||{}; }
+// Read GitHub config from DOM directly (handles password-manager autofill / paste that may not trigger input events)
+function syncGithubFromDom(){
+  if(!state.github) state.github={ token:"", owner:"", repo:"", clientKey:"", autoSync:false, lastSync:"", lastError:"" };
+  const t=$("#ghToken"); if(t) state.github.token=(t.value||"").trim();
+  const ck=$("#ghClientKey"); if(ck) state.github.clientKey=(ck.value||"").trim();
+  const o=$("#ghOwner"); if(o) state.github.owner=(o.value||"").trim();
+  const r=$("#ghRepo"); if(r) state.github.repo=(r.value||"").trim();
+  const a=$("#ghAutoSync"); if(a) state.github.autoSync=!!a.checked;
+  saveSession();
+}
+function githubApiError(status,msg,method,path){
+  if(status===403){
+    return `GitHub API 403: ${msg||"Resource not accessible by personal access token"}。Token 可讀 repo 但無法寫入 data/*.json。請到 GitHub → Settings → Developer settings → Fine-grained tokens → 點 Access on hkjlhkjl6929 旁的 Edit → Repository 勾 hdanio → Contents 設 Read and write → 儲存後重貼 Token。`;
+  }
+  if(status===404 && method==="PUT") return `GitHub API 404: 找不到 ${path||"目標檔案"}，請確認 Repo 擁有者、Repo 名稱、客戶代號是否正確。`;
+  return `GitHub API ${status}: ${msg||"request failed"}`;
+}
+async function githubApi(method,path,body,token){
+  const url=`https://api.github.com/repos/${path}`;
+  const opts={ method, headers:{ "Accept":"application/vnd.github+json", "Authorization":`Bearer ${token}`, "X-GitHub-Api-Version":"2022-11-28" } };
+  if(body){ opts.headers["Content-Type"]="application/json"; opts.body=JSON.stringify(body); }
+  const r=await fetch(url,opts);
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok){ throw new Error(githubApiError(r.status,j.message||r.statusText,method,path)); }
+  return j;
+}
+function utf8ToBase64(str){
+  // Encode UTF-8 string (Chinese OK) to base64 — chunked to avoid stack overflow
+  const bytes=new TextEncoder().encode(str); const C=0x8000; let bin="";
+  for(let i=0;i<bytes.length;i+=C) bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+C));
+  return btoa(bin);
+}
+async function pushDataToGithub(silent){
+  syncGithubFromDom();
+  const g=gh();
+  const missing=[];
+  if(!g.token) missing.push("Token");
+  if(!g.owner) missing.push("Owner");
+  if(!g.repo) missing.push("Repo");
+  if(!g.clientKey) missing.push("客戶代號");
+  if(missing.length) throw new Error(`還缺：${missing.join("、")}（讀到的值：token=${g.token?"✓":"空"} owner="${g.owner||""}" repo="${g.repo||""}" clientKey="${g.clientKey||""}"）`);
+  const has=!!state.lastReport||Object.keys(state.savedMonths||{}).length>0;
+  if(!has) throw new Error("沒有資料可同步（請先匯入 CSV 或儲存月份）");
+  const filePath=`data/${g.clientKey}.json`;
+  const repoPath=`${g.owner}/${g.repo}`;
+  const payload=buildClientPayload(state.lastReport);
+  const json=JSON.stringify(payload,null,0);
+  // Get existing SHA (404 if new)
+  let sha;
+  try { const cur=await githubApi("GET",`${repoPath}/contents/${filePath}`,null,g.token); sha=cur.sha; } catch(e){ /* file doesn't exist, create new */ }
+  const body={ message:`Update ${g.clientKey}.json (${new Date().toISOString().slice(0,16)})`, content:utf8ToBase64(json) };
+  if(sha) body.sha=sha;
+  await githubApi("PUT",`${repoPath}/contents/${filePath}`,body,g.token);
+  state.github.lastSync=new Date().toISOString(); state.github.lastError=""; saveSession(); renderGithubStatus();
+  return { ownerUrl:`${window.location.origin}${window.location.pathname}?d=${g.clientKey}`, sizeKB:(new Blob([json]).size/1024).toFixed(1) };
+}
+async function verifyGithubWriteAccess(g){
+  const probePath="data/.sync-probe.txt";
+  const repoPath=`${g.owner}/${g.repo}`;
+  let sha;
+  try { const cur=await githubApi("GET",`${repoPath}/contents/${probePath}`,null,g.token); sha=cur.sha; } catch(e){}
+  const putBody={ message:"sync write probe", content:utf8ToBase64(String(Date.now())) };
+  if(sha) putBody.sha=sha;
+  const saved=await githubApi("PUT",`${repoPath}/contents/${probePath}`,putBody,g.token);
+  const delSha=saved.content?.sha||saved.sha;
+  if(delSha) await githubApi("DELETE",`${repoPath}/contents/${probePath}`,{ message:"remove sync probe", sha:delSha },g.token);
+}
+async function testGithubConnection(){
+  syncGithubFromDom();
+  const g=gh();
+  if(!g.token){ renderGithubStatus("⚠ Token 沒讀到，請點 Token 欄位後重新貼一次","#9c4444"); return; }
+  if(!g.owner){ renderGithubStatus("⚠ Repo 擁有者沒讀到","#9c4444"); return; }
+  if(!g.repo){ renderGithubStatus("⚠ Repo 名稱沒讀到","#9c4444"); return; }
+  if((g.repo||"").toLowerCase()!=="hdanio"){ renderGithubStatus(`⚠ Repo 名稱應為 hdanio（目前：${g.repo}）`,"#9c4444"); return; }
+  if((g.clientKey||"").toLowerCase()!=="hdanio"){ renderGithubStatus(`⚠ 客戶代號建議填 hdanio（目前：${g.clientKey||"空"}），否則會寫到 data/${g.clientKey||"?"}.json`,"#9c4444"); return; }
+  renderGithubStatus("測試中…","#8a8170");
+  try {
+    const r=await githubApi("GET",`${g.owner}/${g.repo}`,null,g.token);
+    const filePath=`data/${g.clientKey}.json`;
+    try { await githubApi("GET",`${g.owner}/${g.repo}/contents/${filePath}`,null,g.token); }
+    catch(e){ if(!String(e.message||"").includes("404")) throw e; }
+    await verifyGithubWriteAccess(g);
+    renderGithubStatus(`✓ 連線成功，已確認可寫入（${r.full_name} → ${filePath}）`,"#16a34a");
+  }
+  catch(e){ renderGithubStatus(`✗ ${e.message}`,"#9c4444"); }
+}
+async function manualSyncToGithub(){
+  renderGithubStatus("同步中…","#8a8170");
+  try { const r=await pushDataToGithub(false); renderGithubStatus(`✓ 已同步（${r.sizeKB} KB）→ ${r.ownerUrl}`,"#16a34a"); }
+  catch(e){ state.github.lastError=e.message; saveSession(); renderGithubStatus(`✗ ${e.message}`,"#9c4444"); }
+}
+async function autoSyncIfEnabled(){
+  if(!gh().autoSync) return;
+  try { await pushDataToGithub(true); renderGithubStatus("✓ JSON 已同步 "+new Date().toLocaleTimeString(),"#16a34a"); }
+  catch(e){ renderGithubStatus("✗ JSON 同步失敗："+e.message,"#9c4444"); return; }
+  // 同步更新短網址 DB（如果該客戶已經有短碼）
+  try { await updateShortUrlIfExists(); renderGithubStatus("✓ JSON 與短網址都已同步 "+new Date().toLocaleTimeString(),"#16a34a"); }
+  catch(e){ console.warn("短網址更新略過：",e); }
+}
+async function updateShortUrlIfExists(){
+  syncGithubFromDom();
+  const g=gh();
+  if(!g.token||!g.owner||!g.repo||!g.clientKey) return;
+  // 先看 DB 裡有沒有這個 clientKey
+  let hasExisting=false;
+  try {
+    const db=await loadShortDb();
+    const r=db.exec("SELECT code FROM links WHERE client_key = ?",[g.clientKey]);
+    db.close();
+    hasExisting=(r.length&&r[0].values.length);
+  } catch(e){ return; }
+  if(!hasExisting) return; // 沒短碼就不用更新
+  // 重新產生 long URL 並 UPDATE
+  const p=buildClientPayload(state.lastReport);
+  const enc=await encodePayload(p);
+  const url=new URL(window.location.href); url.hash=""; url.search="";
+  url.searchParams.set("client","1"); url.hash=`z=${enc}`;
+  await getOrCreateShort(g.clientKey,url.toString());
+}
+function renderGithubStatus(text,color){
+  const el=$("#ghStatus"); if(!el) return;
+  if(text){ el.textContent=text; el.style.color=color||"#8a8170"; return; }
+  const g=gh();
+  if(g.lastSync){ el.textContent=`上次同步：${g.lastSync.replace("T"," ").slice(0,16)}`; el.style.color="#16a34a"; }
+  else if(g.lastError){ el.textContent=`✗ ${g.lastError}`; el.style.color="#9c4444"; }
+  else el.textContent="";
+}
+function renderGithubInputs(){
+  const g=gh(); const auto=parseRepoFromUrl();
+  const t=$("#ghToken"); if(t&&document.activeElement!==t) t.value=g.token||"";
+  const ck=$("#ghClientKey"); if(ck&&document.activeElement!==ck) ck.value=g.clientKey||defaultClientKey();
+  const o=$("#ghOwner"); if(o&&document.activeElement!==o) o.value=g.owner||auto.owner;
+  const r=$("#ghRepo"); if(r&&document.activeElement!==r) r.value=g.repo||auto.repo;
+  const a=$("#ghAutoSync"); if(a) a.checked=!!g.autoSync;
+  renderGithubStatus();
+}
+
+// Download just the data as JSON → upload to data/{name}.json for auto-update workflow
+async function downloadDataJson(){
+  const has=!!state.lastReport; const hasM=Object.keys(state.savedMonths||{}).length>0;
+  if(!has&&!hasM){ alert("請先匯入資料或儲存月份"); return; }
+  const btn=$("#downloadJsonButton"); if(btn){ btn.disabled=true; btn.textContent="產生中…"; }
+  try {
+    const payload=buildClientPayload(state.lastReport);
+    const json=JSON.stringify(payload);
+    const safe=(state.brandName||"client").toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_|_$/g,"").slice(0,20)||"client";
+    const fn=`${safe}.json`;
+    const blob=new Blob([json],{ type:"application/json;charset=utf-8" });
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a"); a.href=url; a.download=fn; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    const sz=(new Blob([json]).size/1024).toFixed(1);
+    const repoUrl=window.location.origin+window.location.pathname.replace(/\/+$/,"")+"/";
+    const ownerUrl=`${repoUrl}?d=${safe}`;
+    if(btn){ btn.textContent=`已下載 ${fn}（${sz} KB）`; setTimeout(()=>{ btn.textContent="下載業主資料 JSON（自動更新）"; btn.disabled=false; },4000); }
+    setTimeout(()=>{
+      const msg=`✅ 下載完成：${fn}\n\n下一步：\n1. 把這個檔案上傳到 GitHub repo 的 data/ 資料夾（路徑：data/${fn}）\n2. 業主網址：\n${ownerUrl}\n\n之後每月只要重新下載並覆蓋同名 JSON，業主重新整理就看到新資料（不用換連結）。`;
+      alert(msg);
+    },150);
+  } catch(e){ console.error(e); if(btn){ btn.textContent="產生失敗"; btn.disabled=false; } }
+}
+
+// Generate a self-contained HTML with payload baked in → upload to a per-client GitHub repo for short URL
+async function downloadEmbeddedHtml(){
+  const has=!!state.lastReport; const hasM=Object.keys(state.savedMonths||{}).length>0; if(!has&&!hasM) return;
+  const btn=$("#downloadHtmlButton"); if(btn){ btn.disabled=true; btn.textContent="產生中…"; }
+  try {
+    const payload=buildClientPayload(state.lastReport);
+    const json=JSON.stringify(payload).replace(/<\/(script)/gi,"<\\/$1");
+    // Get current document html
+    const doctype="<!doctype html>\n";
+    const html=document.documentElement.outerHTML;
+    // Inject right after <head>
+    const inj="<scr"+"ipt id=\"EMBEDDED_PAYLOAD\" type=\"application/json\">"+json+"<\/scr"+"ipt>";
+    const out=doctype+html.replace(/<head>/i,`<head>${inj}`);
+    const safe=(state.brandName||"client").replace(/[^\w一-龥]+/g,"_").slice(0,20)||"client";
+    const dt=new Date().toISOString().slice(0,10);
+    const fn=`${safe}_${dt}_index.html`;
+    const blob=new Blob([out],{ type:"text/html;charset=utf-8" });
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a"); a.href=url; a.download=fn; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    const sz=(new Blob([out]).size/1024).toFixed(0);
+    if(btn){ btn.textContent=`已下載 ${fn}（${sz} KB）`; setTimeout(()=>{ btn.textContent="下載業主版 HTML（短連結）"; btn.disabled=false; },3000); }
+  } catch(e){ console.error(e); if(btn){ btn.textContent="產生失敗"; btn.disabled=false; } }
+}
+async function applyViewMode(){
+  // ?s=code → SQLite 短網址：查 long URL 後重導
+  const sqp=new URLSearchParams(window.location.search);
+  const shortCode=sqp.get("s");
+  if(shortCode && /^[a-z0-9]{3,10}$/i.test(shortCode)){
+    document.body.style.cssText="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:system-ui;color:#5a5246;background:#f3f1ec;padding:24px;";
+    document.body.innerHTML='<div style="text-align:center;"><div style="font-size:16px;margin-bottom:8px;">解析短網址中…</div><div style="font-size:12px;color:#8a8170;">code: '+shortCode+'</div></div>';
+    try {
+      const { url, diag }=await resolveShortCodeDiag(shortCode);
+      if(url){ window.location.replace(url); return; }
+      const diagHtml=`<div style="margin-top:18px;padding:14px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;font-size:12px;text-align:left;font-family:monospace;line-height:1.6;color:#5a5246;">
+        <div><b>診斷資訊：</b></div>
+        <div>code: <b>${shortCode}</b></div>
+        <div>HTTP 狀態: <b>${diag.httpStatus||"—"}</b></div>
+        <div>DB 是否存在: <b style="color:${diag.dbExists?'#16a34a':'#9c4444'}">${diag.dbExists?"是":"否"}</b></div>
+        <div>DB 大小: <b>${diag.dbSize} bytes</b></div>
+        <div>DB 紀錄總數: <b>${diag.totalRows}</b></div>
+        <div>狀態: <b>${diag.step}</b></div>
+      </div>`;
+      let hint="";
+      if(!diag.dbExists){
+        hint=`<div style="margin-top:14px;font-size:13px;color:#5a5246;line-height:1.7;text-align:left;max-width:520px;">
+          <b>可能原因：</b><br>
+          1. 後台還沒按過「複製業主版連結」push DB 到 GitHub<br>
+          2. 剛 push 完，GitHub Pages 部署還沒完成（再等 1-3 分鐘）<br>
+          3. GitHub Token 權限不夠，DB push 失敗（後台 F12 看 Console）<br>
+          <br>檢查方式：打開 <a href="https://github.com/hkjlhkjl6929/hdanio/blob/main/data/links.sqlite" target="_blank" style="color:#1f6feb">這個連結</a>，看 data/links.sqlite 是不是存在
+        </div>`;
+      } else if(diag.totalRows===0){
+        hint=`<div style="margin-top:14px;font-size:13px;color:#5a5246;line-height:1.7;text-align:left;">
+          DB 存在但裡面沒有任何紀錄。請後台重新按一次「複製業主版連結」。
+        </div>`;
+      } else {
+        hint=`<div style="margin-top:14px;font-size:13px;color:#5a5246;line-height:1.7;text-align:left;">
+          DB 有 ${diag.totalRows} 筆紀錄，但找不到 code "${shortCode}"。可能短碼被覆寫或拼錯。
+        </div>`;
+      }
+      document.body.innerHTML='<div style="max-width:600px;text-align:center;"><div style="font-size:18px;color:#9c4444;margin-bottom:8px;font-weight:700;">短網址解析失敗</div><div style="font-size:12px;color:#8a8170;">code: '+shortCode+'</div>'+diagHtml+hint+'<div style="margin-top:18px;"><button onclick="location.reload()" style="padding:8px 18px;border:1px solid #1f6feb;background:#1f6feb;color:#fff;border-radius:6px;font-size:13px;cursor:pointer;">🔄 重試（等部署再點）</button></div></div>';
+      return;
+    } catch(e){
+      document.body.innerHTML='<div style="text-align:center;padding:24px;"><div style="font-size:16px;color:#9c4444;margin-bottom:8px;">無法載入短網址系統</div><div style="font-size:12px;color:#8a8170;font-family:monospace;">'+(e.message||e)+'</div></div>';
+      return;
+    }
+  }
+  // If page has embedded payload (self-contained HTML for a specific client), force client view
+  const embedded=document.getElementById("EMBEDDED_PAYLOAD");
+  let embeddedPayload=null;
+  if(embedded&&embedded.textContent.trim()){ try { embeddedPayload=JSON.parse(embedded.textContent); } catch(e){ console.error("embedded payload parse failed",e); } }
+  // ?d=name → fetch ./data/name.json (auto-update workflow)
+  const qp=new URLSearchParams(window.location.search);
+  const dataKey=qp.get("d");
+  let fetchedPayload=null;
+  if(dataKey && /^[a-zA-Z0-9_-]+$/.test(dataKey)){
+    try { const r=await fetch(`./data/${encodeURIComponent(dataKey)}.json`,{ cache:"no-store" }); if(r.ok) fetchedPayload=await r.json(); else console.error("data fetch HTTP",r.status); }
+    catch(e){ console.error("data fetch failed",e); }
+  }
+  const c=isClientView()||!!embeddedPayload||!!fetchedPayload||!!dataKey;
+  document.body.classList.toggle("client-view",c); if(c){ state.section=state.section==="setup"||state.section==="raw"?"overview":state.section;
+  let raw=embeddedPayload||fetchedPayload; if(!raw){ try { raw=await getClientPayloadFromUrl(); } catch(e){} } state.clientPayload=raw?expandClientPayload(raw):null;
+  if(state.clientPayload){ if(state.clientPayload.brandName) state.brandName=state.clientPayload.brandName; if(state.clientPayload.brandSubtitle) state.brandSubtitle=state.clientPayload.brandSubtitle; if(state.clientPayload.logo) state.logo=state.clientPayload.logo; if(state.clientPayload.activeMonth) state.activeMonth=state.clientPayload.activeMonth; if(state.clientPayload.months&&Object.keys(state.clientPayload.months).length>0) state.overviewMode="ytd"; if(state.clientPayload.creativeImages) state.creativeImages=state.clientPayload.creativeImages; }
+  else { setTimeout(()=>{ const m=document.querySelector(".main"); if(m) m.innerHTML=`<div class="empty" style="margin-top:60px;max-width:640px;margin-left:auto;margin-right:auto;"><strong>業主版連結缺少資料</strong><div style="margin-top:12px;line-height:1.7;text-align:left;color:#5a5246;">可能原因：<ol style="margin:10px 0 0;padding-left:20px;"><li>使用了 pse.is、bit.ly 等短網址 → 短網址會吃掉 # 後面的資料</li><li>連結沒複製完整</li><li>後台還沒匯入資料就產生連結</li></ol></div></div>`; },0); }
+} else state.clientPayload=null; }
+
+// ===== Session =====
+function saveSession(){ try { const p={ files:state.files, mapping:state.mapping, rules:state.rules, fallbackGroupName:state.fallbackGroupName, creativeImages:state.creativeImages, savedMonths:state.savedMonths, activeMonth:state.activeMonth, brandName:state.brandName, brandSubtitle:state.brandSubtitle, logo:state.logo, github:state.github, audienceRenames:state.audienceRenames }; localStorage.setItem(state.storageKey,JSON.stringify(p)); } catch(e){ const a=$("#mappingAlert"); if(a){ a.classList.add("show"); a.textContent="本機記憶不足，請移除部分圖片。"; } } }
+function migrateLegacySession(){ return; }
+function loadSavedSession(){ try { migrateLegacySession(); const raw=localStorage.getItem(state.storageKey); if(!raw) return; const p=JSON.parse(raw);
+  if(Array.isArray(p.files)) state.files=p.files; if(p.mapping&&typeof p.mapping==="object") state.mapping={...state.mapping,...p.mapping};
+  if(Array.isArray(p.rules)) state.rules=state.rules.map(d=>{ const s=p.rules.find(r=>r.id===d.id); return s?{...d, keywords:s.keywords||d.keywords}:d; });
+  if(p.fallbackGroupName) state.fallbackGroupName=p.fallbackGroupName==="活動組合"?"官網活動":p.fallbackGroupName;
+  if(p.creativeImages&&typeof p.creativeImages==="object") state.creativeImages=p.creativeImages;
+  if(p.savedMonths&&typeof p.savedMonths==="object") state.savedMonths=p.savedMonths;
+  if(typeof p.activeMonth==="string") state.activeMonth=p.activeMonth;
+  if(typeof p.brandName==="string") state.brandName=p.brandName;
+  if(typeof p.brandSubtitle==="string") state.brandSubtitle=p.brandSubtitle;
+  if(typeof p.logo==="string") state.logo=p.logo;
+  if(p.github&&typeof p.github==="object") state.github={...state.github, ...p.github};
+  if(p.audienceRenames&&typeof p.audienceRenames==="object") state.audienceRenames=p.audienceRenames;
+  mergeHeaders();
+} catch(e){ localStorage.removeItem(state.storageKey); } }
+function clearSavedSession(){ try { localStorage.removeItem(state.storageKey); } catch(e){} }
+
+// ===== Creative images =====
+function getCreativeKey(n){ return String(n||"").trim().toLowerCase().replace(/\.(jpg|jpeg|png|gif|webp|bmp|heic|svg)$/i,"").replace(/[\s_\-—–]+/g,"").replace(/[“”"'《》「」]/g,""); }
+// Single creative thumbnail upload: prompt for one image, save under the given key
+// Persist creative image change back to the active saved month (if any)
+function persistImageToActiveMonth(key, dataUrlOrNull){
+  if(!state.activeMonth) return;
+  const m=state.savedMonths[state.activeMonth]; if(!m) return;
+  m.creativeImages=m.creativeImages||{};
+  if(dataUrlOrNull===null) delete m.creativeImages[key];
+  else m.creativeImages[key]=dataUrlOrNull;
+}
+function openCreativeImagePicker(key){
+  if(!key) return;
+  const inp=document.createElement("input"); inp.type="file"; inp.accept="image/*"; inp.style.display="none";
+  inp.addEventListener("change", async ()=>{
+    const f=inp.files?.[0]; inp.remove();
+    if(!f) return;
+    try {
+      const url=await resizeImageFile(f);
+      state.creativeImages[key]=url;
+      persistImageToActiveMonth(key,url);
+      saveSession(); renderCreativeImagesPreview(); renderReport();
+      if(typeof autoSyncIfEnabled==="function") autoSyncIfEnabled();
+    } catch(e){ console.error("creative upload failed",e); alert("素材圖載入失敗"); }
+  });
+  document.body.appendChild(inp); inp.click();
+}
+async function loadImageFiles(fl){ const fs=Array.from(fl||[]).filter(f=>f.type.startsWith("image/")); if(!fs.length) return;
+  for(const f of fs){ const k=getCreativeKey(f.name); if(!k) continue; try { const url=await resizeImageFile(f); state.creativeImages[k]=url; persistImageToActiveMonth(k,url); } catch(e){ console.error(e); } }
+  saveSession(); renderCreativeImagesPreview(); renderReport();
+  if(typeof autoSyncIfEnabled==="function") autoSyncIfEnabled();
+}
+function renderCreativeImagesPreview(){ const el=$("#creativeImagesPreview"); if(!el) return; const ent=Object.entries(state.creativeImages||{});
+  if(!ent.length){ el.innerHTML=`<div class="month-empty-msg" style="grid-column:1/-1;padding:14px;text-align:center;">尚未上傳任何素材圖。</div>`; return; }
+  const ck=new Set(); if(state.lastReport&&state.lastReport.byCreative) state.lastReport.byCreative.forEach(r=>ck.add(getCreativeKey(r.name)));
+  el.innerHTML=ent.map(([k,im])=>{ const m=ck.has(k); return `<div class="ci-cell"><img src="${escapeAttr(im)}" alt="${escapeAttr(k)}"><div class="ci-name">${escapeHtml(k)}</div><div class="ci-status ${m?"matched":""}">${m?"✓ 已 match":"未 match"}</div><button class="mini-button" type="button" data-remove-creative-image="${escapeAttr(k)}">刪除</button></div>`; }).join("");
+}
+function resizeImageFile(f){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onerror=rej; r.onload=()=>{ const im=new Image(); im.onerror=rej; im.onload=()=>{ const mx=520; const sc=Math.min(1,mx/Math.max(im.width,im.height)); const w=Math.max(1,Math.round(im.width*sc)); const h=Math.max(1,Math.round(im.height*sc)); const c=document.createElement("canvas"); c.width=w; c.height=h; const ctx=c.getContext("2d"); ctx.fillStyle="#fff"; ctx.fillRect(0,0,w,h); ctx.drawImage(im,0,0,w,h); res(c.toDataURL("image/jpeg",0.82)); }; im.src=r.result; }; r.readAsDataURL(f); }); }
+
+function copySummary(){ const r=state.lastReport||state.clientPayload; if(!r) return; const t=r.totals; const ms=r.minimumSpend||0;
+  const bA=(r.byAudience||[]).filter(i=>i.spend>=ms).sort((a,b)=>b.roas-a.roas)[0]; const bC=(r.byCreative||[]).filter(i=>i.spend>=ms).sort((a,b)=>b.roas-a.roas)[0];
+  const txt=[isClientView()?"廣告成效摘要":"Meta 廣告分析摘要", `花費：${formatCurrency.format(t.spend)}`, `轉換值：${formatCurrency.format(t.purchaseValue)}`, `ROAS：${t.roas.toFixed(2)}x`, `購買：${formatNumber.format(t.purchases)}`, `CPA：${t.purchases>0?formatCurrency.format(t.cpa):"無購買"}`, bA?`最佳受眾：${bA.name}（ROAS ${bA.roas.toFixed(2)}x）`:"", bC?`最佳素材：${bC.name}（ROAS ${bC.roas.toFixed(2)}x）`:""].filter(Boolean).join("\n");
+  navigator.clipboard?.writeText(txt).then(()=>{ $("#copySummaryButton").textContent="已複製"; setTimeout(()=>{ $("#copySummaryButton").textContent="複製摘要"; },1300); });
+}
+
+async function loadFiles(fl){ const fs=Array.from(fl||[]); for(const f of fs){ const t=await f.text(); const p=parseCsv(t); if(!p.rows.length) continue; const id=`${Date.now()}-${Math.random().toString(16).slice(2)}`; state.files.push({ id, name:f.name, headers:p.headers, rows:p.rows, currency:inferCurrency(f.name,p.headers), level:inferLevel(f.name,p.headers) }); } afterDataChanged(); }
+function loadSample(){ const p=parseCsv(sampleCsv); state.files=[{ id:`sample-${Date.now()}`, name:"範例.csv", headers:p.headers, rows:p.rows, currency:"TWD", level:inferLevel("範例.csv",p.headers) }]; afterDataChanged(); }
+function afterDataChanged(){ mergeHeaders(); autoMapHeaders(); renderFiles(); renderMappings(); renderRules(); renderActiveMonthBanner(); renderMonthSaveInputs(); renderCreativeImagesPreview(); renderReport(); saveSession(); }
+function resetAll(){ if(!confirm("確定清除所有資料？包含已儲存的月份。")) return; state.files=[]; state.headers=[]; state.selectedGroup="all"; state.tableSearch=""; state.tableGroupFilter="all"; Object.keys(state.mapping).forEach(k=>{ state.mapping[k]=""; }); state.creativeImages={}; state.savedMonths={}; state.activeMonth=null; state.draftLabel=""; state.draftKey=""; clearSavedSession(); renderFiles(); renderMappings(); renderRules(); renderActiveMonthBanner(); renderMonthSaveInputs(); renderSavedMonthsList(); renderReport(); }
+
+const sidebar=document.querySelector(".sidebar"); const overlay=$("#sidebarOverlay"); const hb=$("#hamburgerBtn");
+function toggleSidebar(force){ const o=force!==undefined?force:!sidebar.classList.contains("open"); sidebar.classList.toggle("open",o); overlay.classList.toggle("show",o); }
+if(hb) hb.addEventListener("click",()=>toggleSidebar()); if(overlay) overlay.addEventListener("click",()=>toggleSidebar(false));
+
+function wireEvents(){
+  $("#fileInput").addEventListener("change",e=>loadFiles(e.target.files));
+  $("#sampleButton").addEventListener("click",loadSample);
+  $("#resetButton").addEventListener("click",resetAll);
+  $("#exportButton").addEventListener("click",downloadCsv);
+  $("#pdfButton").addEventListener("click",exportPdf);
+  $("#clientLinkButton").addEventListener("click",openClientLink);
+  $("#copySummaryButton").addEventListener("click",copySummary);
+  $("#exchangeRate").addEventListener("input",()=>renderReport());
+  $("#minimumSpend").addEventListener("input",()=>renderReport());
+  $$(".sb-tab").forEach(t=>t.addEventListener("click",e=>{ e.preventDefault(); setSection(t.dataset.section); }));
+  const dz=$("#dropzone"); ["dragenter","dragover"].forEach(ev=>dz.addEventListener(ev,e=>{ e.preventDefault(); dz.classList.add("dragover"); })); ["dragleave","drop"].forEach(ev=>dz.addEventListener(ev,e=>{ e.preventDefault(); dz.classList.remove("dragover"); })); dz.addEventListener("drop",e=>loadFiles(e.dataTransfer.files));
+  const idz=$("#imageDropzone"); if(idz){ ["dragenter","dragover"].forEach(ev=>idz.addEventListener(ev,e=>{ e.preventDefault(); idz.classList.add("dragover"); })); ["dragleave","drop"].forEach(ev=>idz.addEventListener(ev,e=>{ e.preventDefault(); idz.classList.remove("dragover"); })); idz.addEventListener("drop",e=>loadImageFiles(e.dataTransfer.files)); }
+  const ii=$("#imageInput"); if(ii) ii.addEventListener("change",e=>loadImageFiles(e.target.files));
+  const li=$("#logoInput"); if(li) li.addEventListener("change",e=>{ const f=e.target.files?.[0]; if(f) handleLogoUpload(f); e.target.value=""; });
+  document.addEventListener("change",e=>{ const t=e.target;
+    if(t.dataset.mapKey){ state.mapping[t.dataset.mapKey]=t.value; renderReport(); saveSession(); return; }
+    if(t.dataset.fileCurrency){ const f=state.files.find(i=>i.id===t.dataset.fileCurrency); if(f) f.currency=t.value; renderReport(); saveSession(); return; }
+    if(t.dataset.fileLevel){ const f=state.files.find(i=>i.id===t.dataset.fileLevel); if(f) f.level=t.value; renderReport(); saveSession(); return; }
+    if(t.dataset.tableGroupFilter!==undefined||t.id==="tableGroupFilter"){ state.tableGroupFilter=t.value; renderReport(); return; }
+    if(t.dataset.overviewMonthSelect!==undefined){ const k=t.value; if(k) setOverviewMode("month",k); return; }
+    if(t.dataset.audienceMonthSelect!==undefined){ const k=t.value; if(k) enterMonthDetail("audience",k); return; }
+    if(t.id==="ghAutoSync"){ state.github.autoSync=t.checked; saveSession(); renderGithubStatus(t.checked?"已啟用自動同步（下次儲存月份會自動 push）":"已關閉自動同步","#5a5246"); return; }
+  });
+  document.addEventListener("input",e=>{ const t=e.target;
+    if(t.dataset.tableSearch!==undefined||t.id==="tableSearch"){ const tid=t.id; const c=t.selectionStart||0; state.tableSearch=t.value; renderReport(); const n=tid?document.getElementById(tid):$("[data-table-search]"); if(n){ n.focus(); try{ n.setSelectionRange(c,c); }catch(_){} } return; }
+    if(t.dataset.ruleId){ const r=state.rules.find(x=>x.id===t.dataset.ruleId); if(r) r.keywords=t.value; clearMonthReportCache(); renderReport(); saveSession(); return; }
+    if(t.dataset.ruleNameId){ const r=state.rules.find(x=>x.id===t.dataset.ruleNameId); if(r) r.name=t.value||"未命名分組"; clearMonthReportCache(); renderReport(); saveSession(); return; }
+    if(t.dataset.fallbackGroup!==undefined||t.id==="fallbackGroup"){ state.fallbackGroupName=t.value||"官網活動"; renderReport(); saveSession(); return; }
+    if(t.id==="monthLabelInput"){ state.draftLabel=t.value; return; }
+    if(t.id==="monthKeyInput"){ state.draftKey=t.value; return; }
+    if(t.id==="brandName"){ state.brandName=t.value; renderBrand(); applyFavicon(); saveSession(); return; }
+    if(t.id==="brandSubtitle"){ state.brandSubtitle=t.value; renderBrand(); saveSession(); return; }
+    if(t.id==="ghToken"){ state.github.token=t.value.trim(); saveSession(); return; }
+    if(t.id==="ghClientKey"){ state.github.clientKey=t.value.trim(); saveSession(); return; }
+    if(t.id==="ghOwner"){ state.github.owner=t.value.trim(); saveSession(); return; }
+    if(t.id==="ghRepo"){ state.github.repo=t.value.trim(); saveSession(); return; }
+  });
+  $("#saveMonthBtn").addEventListener("click",()=>{ const lE=$("#monthLabelInput"); const kE=$("#monthKeyInput"); const l=(lE.value||"").trim(); const k=(kE.value||"").trim();
+    if(!k){ alert("請輸入月份代碼（YYYY-MM）"); kE.focus(); return; } if(!/^\d{4}-\d{2}$/.test(k)){ alert("格式：YYYY-MM"); kE.focus(); return; }
+    if(state.savedMonths[k]&&state.activeMonth!==k){ if(!confirm(`月份「${state.savedMonths[k].label}」已存在，覆蓋？`)) return; }
+    saveCurrentAsMonth(k,l||defaultLabelFromKey(k)); state.draftLabel=""; state.draftKey=""; renderMonthSaveInputs();
+  });
+  document.addEventListener("click",e=>{ const t=e.target.closest("[data-group],[data-remove-file],[data-remove-creative-image],[data-upload-creative-key],[data-group-toggle],[data-load-month],[data-delete-month],[data-view-month],[data-go-edit],[data-new-draft],[data-month-card],[data-back-to-ytd],[data-upload-logo],[data-remove-logo],[data-download-html],[data-download-json],[data-gh-test],[data-gh-sync],[data-rule-delete-id],[data-rule-add],[data-audience-card],[data-creative-card],[data-back-to-audience-cards],[data-back-to-creative-cards],[data-rename-audience],[data-remove-rename]"); if(!t) return;
+    if(t.dataset.renameAudience!==undefined){
+      e.preventDefault(); e.stopPropagation();
+      const cur=t.dataset.renameAudience||"";
+      const origs=(t.dataset.renameOriginals||"").split("|").filter(Boolean);
+      const list=origs.length?origs:[cur];
+      const nn=prompt(`重新命名受眾「${cur}」為：\n（會自動套用到所有月份；清空則維持原名）`, cur);
+      if(nn==null) return;
+      const tr=nn.trim();
+      if(!tr){ list.forEach(o=>{ delete state.audienceRenames[o]; }); clearMonthReportCache(); saveSession(); renderReport(); renderRenameList(); if(typeof autoSyncIfEnabled==="function") autoSyncIfEnabled(); return; }
+      setAudienceRename(list, tr);
+      return;
+    }
+    if(t.dataset.removeRename!==undefined){
+      e.preventDefault();
+      delete state.audienceRenames[t.dataset.removeRename];
+      clearMonthReportCache(); saveSession(); renderRenameList(); renderReport();
+      if(typeof autoSyncIfEnabled==="function") autoSyncIfEnabled();
+      return;
+    }
+    if(t.dataset.audienceCard){ e.preventDefault(); enterMonthDetail("audience",t.dataset.audienceCard); return; }
+    if(t.dataset.creativeCard){ e.preventDefault(); enterMonthDetail("creative",t.dataset.creativeCard); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-back-to-audience-cards")){ state.audienceMode="cards"; renderReport(); window.scrollTo(0,0); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-back-to-creative-cards")){ state.creativeMode="cards"; renderReport(); window.scrollTo(0,0); return; }
+    if(t.dataset.uploadCreativeKey){ openCreativeImagePicker(t.dataset.uploadCreativeKey); return; }
+    if(t.dataset.ruleDeleteId){ deleteRule(t.dataset.ruleDeleteId); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-rule-add")){ addNewRule(); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-upload-logo")){ $("#logoInput")?.click(); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-remove-logo")){ removeLogo(); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-download-html")){ downloadEmbeddedHtml(); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-download-json")){ downloadDataJson(); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-gh-test")){ testGithubConnection(); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-gh-sync")){ manualSyncToGithub(); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-back-to-ytd")){ e.preventDefault(); setOverviewMode("ytd"); return; }
+    if(t.dataset.monthCard){ e.preventDefault(); setOverviewMode("month",t.dataset.monthCard); return; }
+    if(t.dataset.group){ state.selectedGroup=t.dataset.group; renderReport(); return; }
+    if(t.dataset.removeFile){ state.files=state.files.filter(f=>f.id!==t.dataset.removeFile); afterDataChanged(); return; }
+    if(t.dataset.removeCreativeImage){ const k=t.dataset.removeCreativeImage; delete state.creativeImages[k]; persistImageToActiveMonth(k,null); saveSession(); renderReport(); renderCreativeImagesPreview(); if(typeof autoSyncIfEnabled==="function") autoSyncIfEnabled(); return; }
+    if(t.dataset.groupToggle){ const id=t.dataset.groupToggle; const o=t.classList.toggle("open"); $$(`tr.child[data-group="${id}"]`).forEach(tr=>tr.classList.toggle("show",o)); return; }
+    if(t.dataset.loadMonth){ loadMonthIntoDraft(t.dataset.loadMonth); return; }
+    if(t.dataset.deleteMonth){ deleteMonth(t.dataset.deleteMonth); return; }
+    if(t.dataset.viewMonth){ if(t.dataset.viewMonth==="__draft") return; setViewingMonth(t.dataset.viewMonth); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-go-edit")){ setSection("setup"); return; }
+    if(t.hasAttribute&&t.hasAttribute("data-new-draft")){ newDraft(); setSection("setup"); return; }
+  });
+}
+
+(async ()=>{
+  await applyViewMode();
+  loadSavedSession();
+  state.draftKey=state.activeMonth||suggestNextKey();
+  state.draftLabel=state.activeMonth&&state.savedMonths[state.activeMonth]?state.savedMonths[state.activeMonth].label:defaultLabelFromKey(state.draftKey);
+  renderRules(); renderFiles(); renderMappings(); wireEvents(); renderBrand(); applyFavicon();
+  renderActiveMonthBanner(); renderMonthSaveInputs(); renderSavedMonthsList(); renderCreativeImagesPreview(); renderGithubInputs();
+  renderReport();
+  // Enable download buttons when there is data
+  const has=state.files.length>0||Object.keys(state.savedMonths||{}).length>0;
+  const dh=$("#downloadHtmlButton"); if(dh) dh.disabled=!has;
+  const dj=$("#downloadJsonButton"); if(dj) dj.disabled=!has;
+})();
+</script>
+</body>
+</html>
